@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ConfigNodeInfo appName="${config.center.appName}" baseFolder="${config.center.baseFolder}" mode="0">
+    <remoteServer url="${config.center.remoteServer}" token="${config.center.token}" connectTimeout="${config.center.connectTimeout}" readTimeout="${config.center.readTimeout}"/>
+    <settings>
+        <setting key="remoteCheckInterval">${config.center.remoteCheckInterval}</setting>
+    </settings>
+</ConfigNodeInfo>

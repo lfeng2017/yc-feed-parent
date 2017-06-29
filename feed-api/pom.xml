@@ -1,0 +1,51 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    
+    <!-- 易到评价系统 ：外部接口调用，或者需要用到ＭＱ中对象模型的地方，依赖此module即可-->
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.yongche</groupId>
+        <artifactId>yc-feed-parent</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
+    </parent>
+    <artifactId>feed-api</artifactId>
+    <name>${project.artifactId}</name>
+    <description>${project.artifactId}</description>
+    <packaging>jar</packaging>
+    
+    <build>
+        <finalName>${project.artifactId}-${project.version}</finalName>
+    </build>
+    
+    <dependencies>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.yongche</groupId>
+            <artifactId>feed-domain</artifactId>
+        </dependency>
+        <!--<dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+        </dependency>-->
+    </dependencies>
+
+    <distributionManagement>
+        <repository>
+            <id>im20.releases.http</id>
+            <name>Nexus Release Repository</name>
+            <url>http://10.0.11.69:8082/repository/maven-releases/</url>
+        </repository>
+        <snapshotRepository>
+            <id>im20.snapshots.http</id>
+            <name>Nexus Snapshots Repository</name>
+            <url>http://10.0.11.69:8082/repository/maven-snapshots/</url>
+        </snapshotRepository>
+    </distributionManagement>
+
+</project>

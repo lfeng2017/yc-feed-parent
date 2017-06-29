@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yc.feed.dao.mapper.OrderCommentTagMapper" >
+  <resultMap id="BaseResultMap" type="com.yc.feed.domain.entity.OrderCommentTag" >
+    <id column="comment_tag_detail_id" property="commentTagDetailId" jdbcType="INTEGER" />
+    <result column="service_order_id" property="serviceOrderId" jdbcType="BIGINT" />
+    <result column="driver_id" property="driverId" jdbcType="INTEGER" />
+    <result column="comment_tag_id" property="commentTagId" jdbcType="INTEGER" />
+    <result column="tag_text" property="tagText" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="INTEGER" />
+    <result column="type" property="type" jdbcType="TINYINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    comment_tag_detail_id, service_order_id, driver_id, comment_tag_id, tag_text, create_time,
+    type
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select
+    <include refid="Base_Column_List" />
+    from order_comment_tags
+    where comment_tag_detail_id = #{commentTagDetailId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from order_comment_tags
+    where comment_tag_detail_id = #{commentTagDetailId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.yc.feed.domain.entity.OrderCommentTag" >
+    insert into order_comment_tags (comment_tag_detail_id, service_order_id,
+    driver_id, comment_tag_id, tag_text,
+    create_time, type)
+    values (#{commentTagDetailId,jdbcType=INTEGER}, #{serviceOrderId,jdbcType=BIGINT},
+    #{driverId,jdbcType=INTEGER}, #{commentTagId,jdbcType=INTEGER}, #{tagText,jdbcType=VARCHAR},
+    #{createTime,jdbcType=INTEGER}, #{type,jdbcType=TINYINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yc.feed.domain.entity.OrderCommentTag" >
+    insert into order_comment_tags
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="commentTagDetailId != null" >
+        comment_tag_detail_id,
+      </if>
+      <if test="serviceOrderId != null" >
+        service_order_id,
+      </if>
+      <if test="driverId != null" >
+        driver_id,
+      </if>
+      <if test="commentTagId != null" >
+        comment_tag_id,
+      </if>
+      <if test="tagText != null" >
+        tag_text,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="commentTagDetailId != null" >
+        #{commentTagDetailId,jdbcType=INTEGER},
+      </if>
+      <if test="serviceOrderId != null" >
+        #{serviceOrderId,jdbcType=BIGINT},
+      </if>
+      <if test="driverId != null" >
+        #{driverId,jdbcType=INTEGER},
+      </if>
+      <if test="commentTagId != null" >
+        #{commentTagId,jdbcType=INTEGER},
+      </if>
+      <if test="tagText != null" >
+        #{tagText,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=INTEGER},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yc.feed.domain.entity.OrderCommentTag" >
+    update order_comment_tags
+    <set >
+      <if test="serviceOrderId != null" >
+        service_order_id = #{serviceOrderId,jdbcType=BIGINT},
+      </if>
+      <if test="driverId != null" >
+        driver_id = #{driverId,jdbcType=INTEGER},
+      </if>
+      <if test="commentTagId != null" >
+        comment_tag_id = #{commentTagId,jdbcType=INTEGER},
+      </if>
+      <if test="tagText != null" >
+        tag_text = #{tagText,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=INTEGER},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=TINYINT},
+      </if>
+    </set>
+    where comment_tag_detail_id = #{commentTagDetailId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yc.feed.domain.entity.OrderCommentTag" >
+    update order_comment_tags
+    set service_order_id = #{serviceOrderId,jdbcType=BIGINT},
+      driver_id = #{driverId,jdbcType=INTEGER},
+      comment_tag_id = #{commentTagId,jdbcType=INTEGER},
+      tag_text = #{tagText,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=INTEGER},
+      type = #{type,jdbcType=TINYINT}
+    where comment_tag_detail_id = #{commentTagDetailId,jdbcType=INTEGER}
+  </update>
+
+
+  <select id="getByOrderId" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select
+    <include refid="Base_Column_List" />
+    from order_comment_tags
+    where service_order_id = #{orderId,jdbcType=BIGINT}
+  </select>
+
+  <resultMap id="GroupResults" type="com.yc.feed.domain.model.CommentTagResults" >
+    <result column="comment_tag_id" property="comment_tag_id" jdbcType="INTEGER" />
+    <result column="comment_count" property="count" jdbcType="INTEGER" />
+    <result column="tag_text" property="tag_text" jdbcType="VARCHAR" />
+  </resultMap>
+
+  <select id="getByOrderIds" resultMap="GroupResults" parameterType="com.yc.feed.domain.model.CommentTagResults" >
+    select
+    comment_tag_id,tag_text,count(comment_tag_id) comment_count
+    from order_comment_tags
+    where service_order_id IN
+    <foreach item="item" index="index" collection="array" open="(" separator="," close=")">
+      #{item}
+    </foreach>
+    GROUP BY comment_tag_id,tag_text
+    ORDER BY comment_count desc
+    limit 0,3
+  </select>
+</mapper>

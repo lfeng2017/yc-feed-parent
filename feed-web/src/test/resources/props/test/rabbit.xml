@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<properties>
+    <property key="rabbit.registry.address">10.0.11.177:5672</property>
+    <property key="rabbit.registry.vhost">feed</property>
+    <property key="rabbit.registry.username">guest</property>
+    <property key="rabbit.registry.password">guest</property>
+    <property key="rabbit.comment.exchange.name">feed.exchange.comment</property>
+    <property key="rabbit.comment.queue.name">feed.queue.comment</property>
+    <property key="rabbit.comment.routing.key">feed.key.comment</property>
+    <property key="rabbit.activity.exchange.name">feed.exchange.activity</property>
+    <property key="rabbit.activity.queue.name">feed.queue.activity</property>
+    <property key="rabbit.activity.routing.key">feed.key.activity</property>
+    <!-- 司机最近50单好评率配置-->
+    <property key="rabbit.driver.rate.exchange.name">feed.exchange.driver.evaluation</property>
+    <property key="rabbit.driver.rate.queue.name">feed.queue.driver.evaluation</property>
+    <property key="rabbit.driver.rate.routing.key">feed.key.driver.evaluation</property>
+    <!-- 司机端MQ配置-->
+    <property key="rabbit.registry.driver.address">h20-vm4.corp.yongche.org:5672,h20-vm5.corp.yongche.org:5672</property>
+    <property key="rabbit.registry.driver.vhost">/driver</property>
+    <property key="rabbit.registry.driver.username">yongche</property>
+    <property key="rabbit.registry.driver.password">yongche</property>
+
+    <property key="rabbit.driver.exchange.name">driver_level_evaluation</property>
+    <property key="rabbit.driver.queue.name">driver_level_evaluation_q</property>
+    <property key="rabbit.driver.routing.key">driver_level_evaluation_q</property>
+
+    <!-- 订单系统MQ配置-->
+    <property key="rabbit.registry.order.address">10.0.11.226:5672,10.0.11.227:5672</property>
+    <property key="rabbit.registry.order.vhost">/order</property>
+    <property key="rabbit.registry.order.username">yongche</property>
+    <property key="rabbit.registry.order.password">yongche</property>
+</properties>

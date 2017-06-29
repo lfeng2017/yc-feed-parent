@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns:rabbit="http://www.springframework.org/schema/rabbit"
+	   xsi:schemaLocation="
+            http://www.springframework.org/schema/beans
+                http://www.springframework.org/schema/beans/spring-beans.xsd
+            http://www.springframework.org/schema/rabbit
+                http://www.springframework.org/schema/rabbit/spring-rabbit-1.5.xsd">
+
+	<!-- 订单MQ  -->
+	<rabbit:connection-factory id="orderConnectionFactory" addresses="${rabbit.registry.order.address}" username="${rabbit.registry.order.username}" virtual-host="${rabbit.registry.order.vhost}"
+							   password="${rabbit.registry.order.password}" />
+
+<!--	<rabbit:listener-container connection-factory="orderConnectionFactory">
+	<rabbit:listener ref="orderMQListener" method="listen" queue-names="queue_feed_order" />
+</rabbit:listener-container>
+
+	<bean id="orderMQListener" class="com.yc.feed.service.listener.OrderMQListener">
+	</bean>-->
+
+	<!--从ERP迁移过来的消费mq来更新司机服务次数-->
+   <rabbit:listener-container connection-factory="orderConnectionFactory" acknowledge="auto">
+       <rabbit:listener ref="driverServiceCount" method="onMessage" queue-names="order_status_q" />
+   </rabbit:listener-container>
+
+   <bean id="driverServiceCount" class="com.yc.feed.service.listener.DriverServiceCountListener">
+   </bean>
+
+</beans>

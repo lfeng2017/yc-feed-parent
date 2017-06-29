@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yc.feed.dao.crm.JudgeOfUserMapper" >
+  <resultMap id="BaseResultMap" type="com.yc.feed.domain.entity.JudgeOfUser" >
+    <id column="djou_id" property="djouId" jdbcType="BIGINT" />
+    <result column="service_order_id" property="serviceOrderId" jdbcType="BIGINT" />
+    <result column="driver_id" property="driverId" jdbcType="BIGINT" />
+    <result column="user_id" property="userId" jdbcType="BIGINT" />
+    <result column="score" property="score" jdbcType="INTEGER" />
+    <result column="detail" property="detail" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="BIGINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    djou_id, service_order_id, driver_id, user_id, score, detail, create_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from driver_judge_of_user
+    where djou_id = #{djouId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from driver_judge_of_user
+    where djou_id = #{djouId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.yc.feed.domain.entity.JudgeOfUser" >
+    insert into driver_judge_of_user (djou_id, service_order_id, driver_id, 
+      user_id, score, detail, 
+      create_time)
+    values (#{djouId,jdbcType=BIGINT}, #{serviceOrderId,jdbcType=BIGINT}, #{driverId,jdbcType=BIGINT}, 
+      #{userId,jdbcType=BIGINT}, #{score,jdbcType=INTEGER}, #{detail,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yc.feed.domain.entity.JudgeOfUser" >
+    insert into driver_judge_of_user
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="djouId != null" >
+        djou_id,
+      </if>
+      <if test="serviceOrderId != null" >
+        service_order_id,
+      </if>
+      <if test="driverId != null" >
+        driver_id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="score != null" >
+        score,
+      </if>
+      <if test="detail != null" >
+        detail,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="djouId != null" >
+        #{djouId,jdbcType=BIGINT},
+      </if>
+      <if test="serviceOrderId != null" >
+        #{serviceOrderId,jdbcType=BIGINT},
+      </if>
+      <if test="driverId != null" >
+        #{driverId,jdbcType=BIGINT},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="score != null" >
+        #{score,jdbcType=INTEGER},
+      </if>
+      <if test="detail != null" >
+        #{detail,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yc.feed.domain.entity.JudgeOfUser" >
+    update driver_judge_of_user
+    <set >
+      <if test="serviceOrderId != null" >
+        service_order_id = #{serviceOrderId,jdbcType=BIGINT},
+      </if>
+      <if test="driverId != null" >
+        driver_id = #{driverId,jdbcType=BIGINT},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="score != null" >
+        score = #{score,jdbcType=INTEGER},
+      </if>
+      <if test="detail != null" >
+        detail = #{detail,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=BIGINT},
+      </if>
+    </set>
+    where djou_id = #{djouId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yc.feed.domain.entity.JudgeOfUser" >
+    update driver_judge_of_user
+    set service_order_id = #{serviceOrderId,jdbcType=BIGINT},
+      driver_id = #{driverId,jdbcType=BIGINT},
+      user_id = #{userId,jdbcType=BIGINT},
+      score = #{score,jdbcType=INTEGER},
+      detail = #{detail,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=BIGINT}
+    where djou_id = #{djouId,jdbcType=BIGINT}
+  </update>
+
+  <select id="list" resultMap="BaseResultMap" parameterType="com.yc.feed.domain.req.GetJudgementReq" >
+    select
+    <include refid="Base_Column_List" />
+    from driver_judge_of_user
+    where TRUE
+    <if test="driverId != null" >
+      AND driver_id = #{driverId,jdbcType=BIGINT}
+    </if>
+    <if test="userId != null" >
+      AND user_id = #{userId,jdbcType=BIGINT}
+    </if>
+    <if test="serviceOrderId != null" >
+      AND service_order_id = #{serviceOrderId,jdbcType=BIGINT}
+    </if>
+    ORDER BY create_time DESC
+    <if test="pageSql != null" >
+      ${pageSql}
+    </if>
+  </select>
+
+
+  <select id="count" resultType="long" parameterType="com.yc.feed.domain.req.GetJudgementReq" >
+    select
+    COUNT(service_order_id)
+    from driver_judge_of_user
+    where TRUE
+    <if test="driverId != null" >
+      AND driver_id = #{driverId,jdbcType=BIGINT}
+    </if>
+    <if test="userId != null" >
+      AND user_id = #{userId,jdbcType=BIGINT}
+    </if>
+    <if test="serviceOrderId != null" >
+      AND service_order_id = #{serviceOrderId,jdbcType=BIGINT}
+    </if>
+  </select>
+</mapper>

@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yc.feed.dao.crm.CompletedOrderMapper" >
+  <resultMap id="BaseResultMap" type="com.yc.feed.domain.entity.CompletedOrder" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="service_order_id" property="serviceOrderId" jdbcType="BIGINT" />
+    <result column="driver_id" property="driverId" jdbcType="BIGINT" />
+    <result column="user_id" property="userId" jdbcType="BIGINT" />
+    <result column="end_time" property="endTime" jdbcType="BIGINT" />
+    <result column="evaluation" property="evaluation" jdbcType="BIT" />
+    <result column="status" property="status" jdbcType="BIT" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="update_date" property="updateDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, service_order_id, driver_id, user_id, end_time, evaluation, status, remark, create_date, 
+    update_date
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from comment_complete_order
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from comment_complete_order
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.yc.feed.domain.entity.CompletedOrder" >
+    insert into comment_complete_order (id, service_order_id, driver_id, 
+      user_id, end_time, evaluation, 
+      status, remark, create_date, 
+      update_date)
+    values (#{id,jdbcType=INTEGER}, #{serviceOrderId,jdbcType=BIGINT}, #{driverId,jdbcType=BIGINT}, 
+      #{userId,jdbcType=BIGINT}, #{endTime,jdbcType=BIGINT}, #{evaluation,jdbcType=BIT}, 
+      #{status,jdbcType=BIT}, #{remark,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP}, 
+      #{updateDate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yc.feed.domain.entity.CompletedOrder" >
+    insert into comment_complete_order
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="serviceOrderId != null" >
+        service_order_id,
+      </if>
+      <if test="driverId != null" >
+        driver_id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="endTime != null" >
+        end_time,
+      </if>
+      <if test="evaluation != null" >
+        evaluation,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="createDate != null" >
+        create_date,
+      </if>
+      <if test="updateDate != null" >
+        update_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="serviceOrderId != null" >
+        #{serviceOrderId,jdbcType=BIGINT},
+      </if>
+      <if test="driverId != null" >
+        #{driverId,jdbcType=BIGINT},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="endTime != null" >
+        #{endTime,jdbcType=BIGINT},
+      </if>
+      <if test="evaluation != null" >
+        #{evaluation,jdbcType=BIT},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=BIT},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null" >
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yc.feed.domain.entity.CompletedOrder" >
+    update comment_complete_order
+    <set >
+      <if test="serviceOrderId != null" >
+        service_order_id = #{serviceOrderId,jdbcType=BIGINT},
+      </if>
+      <if test="driverId != null" >
+        driver_id = #{driverId,jdbcType=BIGINT},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="endTime != null" >
+        end_time = #{endTime,jdbcType=BIGINT},
+      </if>
+      <if test="evaluation != null" >
+        evaluation = #{evaluation,jdbcType=BIT},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=BIT},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null" >
+        update_date = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yc.feed.domain.entity.CompletedOrder" >
+    update comment_complete_order
+    set service_order_id = #{serviceOrderId,jdbcType=BIGINT},
+      driver_id = #{driverId,jdbcType=BIGINT},
+      user_id = #{userId,jdbcType=BIGINT},
+      end_time = #{endTime,jdbcType=BIGINT},
+      evaluation = #{evaluation,jdbcType=BIT},
+      status = #{status,jdbcType=BIT},
+      remark = #{remark,jdbcType=VARCHAR},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      update_date = #{updateDate,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <update id="updateStatus" parameterType="com.yc.feed.domain.entity.CompletedOrder" >
+    update comment_complete_order
+    set
+    evaluation = #{evaluation,jdbcType=BIT},
+    status = #{status,jdbcType=BIT},
+    remark = #{remark,jdbcType=VARCHAR},
+    update_date = now()
+    where status = 1
+    AND service_order_id = #{serviceOrderId,jdbcType=BIGINT}
+    <if test="driverId != null" >
+      AND driver_id = #{driverId,jdbcType=BIGINT}
+    </if>
+    <if test="userId != null" >
+      AND user_id = #{userId,jdbcType=BIGINT}
+    </if>
+  </update>
+
+  <select id="list" resultMap="BaseResultMap" parameterType="long" >
+    select
+    <include refid="Base_Column_List" />
+    from comment_complete_order
+    where status = 1
+    AND end_time &lt;=  #{minEndTime,jdbcType=INTEGER}
+  </select>
+
+</mapper>

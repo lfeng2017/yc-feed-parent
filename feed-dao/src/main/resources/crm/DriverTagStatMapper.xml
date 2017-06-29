@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yc.feed.dao.crm.DriverTagStatMapper" >
+  <resultMap id="BaseResultMap" type="com.yc.feed.domain.entity.DriverTagStat" >
+    <id column="driver_comment_tag_statistics_id" property="driverCommentTagStatisticsId" jdbcType="BIGINT" />
+    <result column="driver_id" property="driverId" jdbcType="INTEGER" />
+    <result column="comment_tag_id" property="commentTagId" jdbcType="INTEGER" />
+    <result column="tag_text" property="tagText" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="TINYINT" />
+    <result column="count" property="count" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    driver_comment_tag_statistics_id, driver_id, comment_tag_id, tag_text, type, count, 
+    create_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from driver_comment_tag_statistics
+    where driver_comment_tag_statistics_id = #{driverCommentTagStatisticsId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from driver_comment_tag_statistics
+    where driver_comment_tag_statistics_id = #{driverCommentTagStatisticsId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.yc.feed.domain.entity.DriverTagStat" >
+    insert into driver_comment_tag_statistics (driver_comment_tag_statistics_id, driver_id, 
+      comment_tag_id, tag_text, type, 
+      count, create_time)
+    values (#{driverCommentTagStatisticsId,jdbcType=BIGINT}, #{driverId,jdbcType=INTEGER}, 
+      #{commentTagId,jdbcType=INTEGER}, #{tagText,jdbcType=VARCHAR}, #{type,jdbcType=TINYINT}, 
+      #{count,jdbcType=INTEGER}, #{createTime,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yc.feed.domain.entity.DriverTagStat" >
+    insert into driver_comment_tag_statistics
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="driverCommentTagStatisticsId != null" >
+        driver_comment_tag_statistics_id,
+      </if>
+      <if test="driverId != null" >
+        driver_id,
+      </if>
+      <if test="commentTagId != null" >
+        comment_tag_id,
+      </if>
+      <if test="tagText != null" >
+        tag_text,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="count != null" >
+        count,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="driverCommentTagStatisticsId != null" >
+        #{driverCommentTagStatisticsId,jdbcType=BIGINT},
+      </if>
+      <if test="driverId != null" >
+        #{driverId,jdbcType=INTEGER},
+      </if>
+      <if test="commentTagId != null" >
+        #{commentTagId,jdbcType=INTEGER},
+      </if>
+      <if test="tagText != null" >
+        #{tagText,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=TINYINT},
+      </if>
+      <if test="count != null" >
+        #{count,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yc.feed.domain.entity.DriverTagStat" >
+    update driver_comment_tag_statistics
+    <set >
+      <if test="driverId != null" >
+        driver_id = #{driverId,jdbcType=INTEGER},
+      </if>
+      <if test="commentTagId != null" >
+        comment_tag_id = #{commentTagId,jdbcType=INTEGER},
+      </if>
+      <if test="tagText != null" >
+        tag_text = #{tagText,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=TINYINT},
+      </if>
+      <if test="count != null" >
+        count = #{count,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=INTEGER},
+      </if>
+    </set>
+    where driver_comment_tag_statistics_id = #{driverCommentTagStatisticsId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yc.feed.domain.entity.DriverTagStat" >
+    update driver_comment_tag_statistics
+    set driver_id = #{driverId,jdbcType=INTEGER},
+      comment_tag_id = #{commentTagId,jdbcType=INTEGER},
+      tag_text = #{tagText,jdbcType=VARCHAR},
+      type = #{type,jdbcType=TINYINT},
+      count = #{count,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=INTEGER}
+    where driver_comment_tag_statistics_id = #{driverCommentTagStatisticsId,jdbcType=BIGINT}
+  </update>
+
+  <select id="selectByDriverId" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select
+    <include refid="Base_Column_List" />
+    from driver_comment_tag_statistics
+    where driver_id = #{driverId,jdbcType=BIGINT}
+    order by count desc
+  </select>
+
+  <update id="addCount" parameterType="com.yc.feed.domain.entity.DriverTagStat" >
+    update driver_comment_tag_statistics
+    set
+    count = count+1
+    where driver_id =  #{driverId,jdbcType=INTEGER}
+    AND  comment_tag_id = #{commentTagId,jdbcType=INTEGER}
+  </update>
+
+  <delete id="deleteByDriverId" parameterType="java.lang.Long" >
+    delete from driver_comment_tag_statistics
+    where driver_id = #{driverId,jdbcType=BIGINT}
+  </delete>
+
+</mapper>

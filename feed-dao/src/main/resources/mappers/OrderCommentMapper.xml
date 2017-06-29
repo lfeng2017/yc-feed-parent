@@ -1,0 +1,472 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yc.feed.dao.mapper.OrderCommentMapper" >
+  <resultMap id="BaseResultMap" type="com.yc.feed.domain.entity.OrderComment" >
+    <id column="order_comment_id" property="orderCommentId" jdbcType="INTEGER" />
+    <result column="service_order_id" property="serviceOrderId" jdbcType="BIGINT" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="product_type_id" property="productTypeId" jdbcType="INTEGER" />
+    <result column="car_type_id" property="carTypeId" jdbcType="INTEGER" />
+    <result column="city" property="city" jdbcType="VARCHAR" />
+    <result column="driver_id" property="driverId" jdbcType="INTEGER" />
+    <result column="score" property="score" jdbcType="INTEGER" />
+    <result column="content" property="content" jdbcType="VARCHAR" />
+    <result column="comment_user_id" property="commentUserId" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="INTEGER" />
+    <result column="update_time" property="updateTime" jdbcType="INTEGER" />
+    <result column="operator_id" property="operatorId" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="TINYINT" />
+    <result column="end_time" property="endTime" jdbcType="INTEGER" />
+    <result column="display_status" property="displayStatus" jdbcType="TINYINT" />
+    <result column="score_1" property="score1" jdbcType="INTEGER" />
+    <result column="score_2" property="score2" jdbcType="INTEGER" />
+    <result column="score_3" property="score3" jdbcType="INTEGER" />
+    <result column="score_4" property="score4" jdbcType="INTEGER" />
+    <result column="score_5" property="score5" jdbcType="INTEGER" />
+    <result column="evaluation" property="evaluation" jdbcType="TINYINT" />
+  </resultMap>
+
+  <sql id="Base_Column_List" >
+    order_comment_id, service_order_id, user_id, product_type_id, car_type_id, city, 
+    driver_id, score, content, comment_user_id, create_time, update_time, operator_id, 
+    status, end_time, display_status, score_1, score_2, score_3, score_4, score_5, evaluation
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from order_comment
+    where order_comment_id = #{orderCommentId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from order_comment
+    where order_comment_id = #{orderCommentId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.yc.feed.domain.entity.OrderComment" >
+    insert into order_comment (order_comment_id, service_order_id, user_id, 
+      product_type_id, car_type_id, city, 
+      driver_id, score, content, 
+      comment_user_id, create_time, update_time, 
+      operator_id, status, end_time, 
+      display_status, score_1, score_2, 
+      score_3, score_4, score_5, 
+      evaluation)
+    values (#{orderCommentId,jdbcType=INTEGER}, #{serviceOrderId,jdbcType=BIGINT}, #{userId,jdbcType=INTEGER}, 
+      #{productTypeId,jdbcType=INTEGER}, #{carTypeId,jdbcType=INTEGER}, #{city,jdbcType=VARCHAR}, 
+      #{driverId,jdbcType=INTEGER}, #{score,jdbcType=INTEGER}, #{content,jdbcType=VARCHAR}, 
+      #{commentUserId,jdbcType=INTEGER}, #{createTime,jdbcType=INTEGER}, #{updateTime,jdbcType=INTEGER}, 
+      #{operatorId,jdbcType=INTEGER}, #{status,jdbcType=TINYINT}, #{endTime,jdbcType=INTEGER}, 
+      #{displayStatus,jdbcType=TINYINT}, #{score1,jdbcType=INTEGER}, #{score2,jdbcType=INTEGER}, 
+      #{score3,jdbcType=INTEGER}, #{score4,jdbcType=INTEGER}, #{score5,jdbcType=INTEGER}, 
+      #{evaluation,jdbcType=TINYINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yc.feed.domain.entity.OrderComment" >
+    insert into order_comment
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="orderCommentId != null" >
+        order_comment_id,
+      </if>
+      <if test="serviceOrderId != null" >
+        service_order_id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="productTypeId != null" >
+        product_type_id,
+      </if>
+      <if test="carTypeId != null" >
+        car_type_id,
+      </if>
+      <if test="city != null" >
+        city,
+      </if>
+      <if test="driverId != null" >
+        driver_id,
+      </if>
+      <if test="score != null" >
+        score,
+      </if>
+      <if test="content != null" >
+        content,
+      </if>
+      <if test="commentUserId != null" >
+        comment_user_id,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="operatorId != null" >
+        operator_id,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="endTime != null" >
+        end_time,
+      </if>
+      <if test="displayStatus != null" >
+        display_status,
+      </if>
+      <if test="score1 != null" >
+        score_1,
+      </if>
+      <if test="score2 != null" >
+        score_2,
+      </if>
+      <if test="score3 != null" >
+        score_3,
+      </if>
+      <if test="score4 != null" >
+        score_4,
+      </if>
+      <if test="score5 != null" >
+        score_5,
+      </if>
+      <if test="evaluation != null" >
+        evaluation,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="orderCommentId != null" >
+        #{orderCommentId,jdbcType=INTEGER},
+      </if>
+      <if test="serviceOrderId != null" >
+        #{serviceOrderId,jdbcType=BIGINT},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="productTypeId != null" >
+        #{productTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="carTypeId != null" >
+        #{carTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="city != null" >
+        #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="driverId != null" >
+        #{driverId,jdbcType=INTEGER},
+      </if>
+      <if test="score != null" >
+        #{score,jdbcType=INTEGER},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="commentUserId != null" >
+        #{commentUserId,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=INTEGER},
+      </if>
+      <if test="operatorId != null" >
+        #{operatorId,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=TINYINT},
+      </if>
+      <if test="endTime != null" >
+        #{endTime,jdbcType=INTEGER},
+      </if>
+      <if test="displayStatus != null" >
+        #{displayStatus,jdbcType=TINYINT},
+      </if>
+      <if test="score1 != null" >
+        #{score1,jdbcType=INTEGER},
+      </if>
+      <if test="score2 != null" >
+        #{score2,jdbcType=INTEGER},
+      </if>
+      <if test="score3 != null" >
+        #{score3,jdbcType=INTEGER},
+      </if>
+      <if test="score4 != null" >
+        #{score4,jdbcType=INTEGER},
+      </if>
+      <if test="score5 != null" >
+        #{score5,jdbcType=INTEGER},
+      </if>
+      <if test="evaluation != null" >
+        #{evaluation,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yc.feed.domain.entity.OrderComment" >
+    update order_comment
+    <set >
+      <if test="serviceOrderId != null" >
+        service_order_id = #{serviceOrderId,jdbcType=BIGINT},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="productTypeId != null" >
+        product_type_id = #{productTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="carTypeId != null" >
+        car_type_id = #{carTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="city != null" >
+        city = #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="driverId != null" >
+        driver_id = #{driverId,jdbcType=INTEGER},
+      </if>
+      <if test="score != null" >
+        score = #{score,jdbcType=INTEGER},
+      </if>
+      <if test="content != null" >
+        content = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="commentUserId != null" >
+        comment_user_id = #{commentUserId,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=INTEGER},
+      </if>
+      <if test="operatorId != null" >
+        operator_id = #{operatorId,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="endTime != null" >
+        end_time = #{endTime,jdbcType=INTEGER},
+      </if>
+      <if test="displayStatus != null" >
+        display_status = #{displayStatus,jdbcType=TINYINT},
+      </if>
+      <if test="score1 != null" >
+        score_1 = #{score1,jdbcType=INTEGER},
+      </if>
+      <if test="score2 != null" >
+        score_2 = #{score2,jdbcType=INTEGER},
+      </if>
+      <if test="score3 != null" >
+        score_3 = #{score3,jdbcType=INTEGER},
+      </if>
+      <if test="score4 != null" >
+        score_4 = #{score4,jdbcType=INTEGER},
+      </if>
+      <if test="score5 != null" >
+        score_5 = #{score5,jdbcType=INTEGER},
+      </if>
+      <if test="evaluation != null" >
+        evaluation = #{evaluation,jdbcType=TINYINT},
+      </if>
+    </set>
+    where order_comment_id = #{orderCommentId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yc.feed.domain.entity.OrderComment" >
+    update order_comment
+    set service_order_id = #{serviceOrderId,jdbcType=BIGINT},
+      user_id = #{userId,jdbcType=INTEGER},
+      product_type_id = #{productTypeId,jdbcType=INTEGER},
+      car_type_id = #{carTypeId,jdbcType=INTEGER},
+      city = #{city,jdbcType=VARCHAR},
+      driver_id = #{driverId,jdbcType=INTEGER},
+      score = #{score,jdbcType=INTEGER},
+      content = #{content,jdbcType=VARCHAR},
+      comment_user_id = #{commentUserId,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=INTEGER},
+      update_time = #{updateTime,jdbcType=INTEGER},
+      operator_id = #{operatorId,jdbcType=INTEGER},
+      status = #{status,jdbcType=TINYINT},
+      end_time = #{endTime,jdbcType=INTEGER},
+      display_status = #{displayStatus,jdbcType=TINYINT},
+      score_1 = #{score1,jdbcType=INTEGER},
+      score_2 = #{score2,jdbcType=INTEGER},
+      score_3 = #{score3,jdbcType=INTEGER},
+      score_4 = #{score4,jdbcType=INTEGER},
+      score_5 = #{score5,jdbcType=INTEGER},
+      evaluation = #{evaluation,jdbcType=TINYINT}
+    where order_comment_id = #{orderCommentId,jdbcType=INTEGER}
+  </update>
+
+
+  <select id="selectByOrderId" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select
+    <include refid="Base_Column_List" />
+    from order_comment
+    where service_order_id = #{orderId,jdbcType=BIGINT}
+  </select>
+
+
+  <update id="updateStatus" parameterType="com.yc.feed.domain.entity.OrderComment" >
+    update order_comment
+    set
+    status = #{status,jdbcType=TINYINT},
+    operator_id = #{operatorId,jdbcType=INTEGER},
+    update_time = #{updateTime,jdbcType=INTEGER}
+    where service_order_id = #{serviceOrderId,jdbcType=INTEGER}
+    <if test="driverId != null" >
+      AND  driver_id = #{driverId,jdbcType=INTEGER}
+    </if>
+  </update>
+
+  <update id="changeDisplayStatus" parameterType="com.yc.feed.domain.entity.OrderComment" >
+    update order_comment
+    set
+    display_status = #{displayStatus,jdbcType=TINYINT},
+    operator_id = #{operatorId,jdbcType=INTEGER},
+    update_time = #{updateTime,jdbcType=INTEGER}
+    where service_order_id = #{serviceOrderId,jdbcType=INTEGER}
+  </update>
+
+  <select id="list" resultMap="BaseResultMap" parameterType="com.yc.feed.domain.req.GetCommentListReq" >
+    select
+    <include refid="Base_Column_List" />
+    from order_comment
+    where TRUE
+    <if test="driverId != null" >
+      AND driver_id = #{driverId,jdbcType=INTEGER}
+    </if>
+    <if test="userId != null" >
+      AND user_id = #{userId,jdbcType=INTEGER}
+    </if>
+    <if test="carTypeId != null" >
+      AND car_type_id = #{carTypeId,jdbcType=INTEGER}
+    </if>
+    <if test="evaluation != null" >
+      AND evaluation = #{evaluation,jdbcType=INTEGER}
+    </if>
+    <if test="status != null" >
+      AND status = #{status,jdbcType=TINYINT}
+    </if>
+    <if test="displayStatus != null" >
+      AND display_status = #{displayStatus,jdbcType=TINYINT}
+    </if>
+    <if test="startTimeStamp > 0" >
+      AND create_time &gt;=  #{startTimeStamp,jdbcType=INTEGER}
+    </if>
+    <if test="endTimeStamp > 0" >
+      AND create_time &lt;=  #{endTimeStamp,jdbcType=INTEGER}
+    </if>
+    <if test="content != null" >
+      AND content LIKE #{content,jdbcType=VARCHAR}
+    </if>
+    <if test="city != null" >
+      AND city LIKE #{city,jdbcType=VARCHAR}
+    </if>
+    <if test="tagId != null" >
+      AND service_order_id in (select service_order_id from order_comment_tags where comment_tag_id =#{tagId,jdbcType=INTEGER})
+    </if>
+    <if test="descFlag == false" >
+      ORDER BY create_time ASC
+    </if>
+    <if test="descFlag == true" >
+      ORDER BY create_time DESC
+    </if>
+    <if test="pageSql != null" >
+      ${pageSql}
+    </if>
+  </select>
+
+  <select id="listByEndTime" resultMap="BaseResultMap" parameterType="com.yc.feed.domain.req.GetCommentListReq" >
+    select
+    <include refid="Base_Column_List" />
+    from order_comment
+    where TRUE
+    <if test="driverId != null" >
+      AND driver_id = #{driverId,jdbcType=INTEGER}
+    </if>
+    <if test="startTimeStamp > 0" >
+      AND end_time &gt;=  #{startTimeStamp,jdbcType=INTEGER}
+    </if>
+    <if test="endTimeStamp > 0" >
+      AND end_time &lt;=  #{endTimeStamp,jdbcType=INTEGER}
+    </if>
+    ORDER BY create_time ASC
+  </select>
+
+
+  <select id="count" resultType="long" parameterType="com.yc.feed.domain.req.GetCommentListReq" >
+    select
+    COUNT(service_order_id)
+    from order_comment
+    where TRUE
+    <if test="driverId != null" >
+      AND driver_id = #{driverId,jdbcType=INTEGER}
+    </if>
+    <if test="userId != null" >
+      AND user_id = #{userId,jdbcType=INTEGER}
+    </if>
+    <if test="evaluation != null" >
+      AND evaluation = #{evaluation,jdbcType=INTEGER}
+    </if>
+    <if test="status != null" >
+      AND status = #{status,jdbcType=TINYINT}
+    </if>
+    <if test="displayStatus != null" >
+      AND display_status = #{displayStatus,jdbcType=TINYINT}
+    </if>
+    <if test="startTimeStamp > 0" >
+      AND create_time &gt;=  #{startTimeStamp,jdbcType=INTEGER}
+    </if>
+    <if test="endTimeStamp > 0" >
+      AND create_time &lt;=  #{endTimeStamp,jdbcType=INTEGER}
+    </if>
+    <if test="carTypeId != null" >
+      AND car_type_id = #{carTypeId,jdbcType=INTEGER}
+    </if>
+    <if test="content != null" >
+      AND content LIKE #{content,jdbcType=VARCHAR}
+    </if>
+    <if test="city != null" >
+      AND city LIKE #{city,jdbcType=VARCHAR}
+    </if>
+    <if test="tagId != null" >
+      AND service_order_id in (select service_order_id from order_comment_tags where comment_tag_id =#{tagId,jdbcType=INTEGER})
+    </if>
+  </select>
+
+  <select id="getDriverAvgScore" resultType="float" parameterType="java.lang.Long" >
+    select
+    IFNULL(AVG(score),0)
+    from order_comment
+    where status=1
+      AND driver_id = #{driverId,jdbcType=INTEGER}
+  </select>
+
+  <select id="getLast50" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select
+    <include refid="Base_Column_List" />
+    from order_comment
+    where status=1
+    AND driver_id = #{driverId,jdbcType=INTEGER} AND evaluation != 0 AND comment_user_id > 0
+    ORDER BY create_time DESC
+    limit 0,50
+  </select>
+
+  <resultMap id="Last50ResultMap" type="com.yc.feed.domain.model.DriverRecentOrderComment" >
+  <result column="order_id_string" property="orders" jdbcType="VARCHAR" />
+  <result column="driver_id" property="driverId" jdbcType="INTEGER" />
+  </resultMap>
+  <select id="getLast50Comment" resultMap="Last50ResultMap" parameterType="com.yc.feed.domain.model.DriverRecentOrderComment" >
+    SELECT driver_id,
+            SUBSTRING_INDEX(GROUP_CONCAT(order_comment.service_order_id ORDER BY create_time DESC), ',',50) AS order_id_string
+    FROM (
+          SELECT
+          driver_id,
+          service_order_id,
+          create_time
+          FROM order_comment
+          WHERE STATUS=1 AND evaluation !=0  AND create_time <![CDATA[ < ]]> UNIX_TIMESTAMP(FROM_UNIXTIME(UNIX_TIMESTAMP(),'%Y-%m-%d 00:00:00'))
+          GROUP BY
+          driver_id, service_order_id
+    ) AS order_comment
+    GROUP BY driver_id
+  </select>
+
+
+</mapper>

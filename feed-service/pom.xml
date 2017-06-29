@@ -1,0 +1,70 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.yongche</groupId>
+        <artifactId>yc-feed-parent</artifactId>
+		<version>1.0.0-SNAPSHOT</version>
+	</parent>
+	<artifactId>feed-service</artifactId>
+	<name>${project.artifactId}</name>
+	<description>${project.artifactId}</description>
+	<packaging>jar</packaging>
+	
+	<build>
+		<finalName>${project.artifactId}-${project.version}</finalName>
+	</build>
+	
+	<dependencies>
+        <dependency>
+            <groupId>com.yongche</groupId>
+            <artifactId>feed-domain</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.yongche</groupId>
+            <artifactId>feed-dao</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.yongche</groupId>
+            <artifactId>feed-common</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.yongche</groupId>
+            <artifactId>feed-api</artifactId>
+        </dependency>
+        <!-- json-->
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.amqp</groupId>
+            <artifactId>spring-amqp</artifactId>
+            <version>1.5.1.RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>redis.clients</groupId>
+            <artifactId>jedis</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.amqp</groupId>
+            <artifactId>spring-rabbit</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.yongche</groupId>
+            <artifactId>consumer</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
+
+</project>

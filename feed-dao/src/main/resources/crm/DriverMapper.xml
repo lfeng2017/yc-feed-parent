@@ -1,0 +1,1268 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yc.feed.dao.crm.DriverMapper" >
+  <resultMap id="BaseResultMap" type="com.yc.feed.domain.entity.Driver" >
+    <id column="driver_id" property="driverId" jdbcType="INTEGER" />
+    <result column="company_id" property="companyId" jdbcType="INTEGER" />
+    <result column="labour_company_id" property="labourCompanyId" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="login_name" property="loginName" jdbcType="VARCHAR" />
+    <result column="password" property="password" jdbcType="CHAR" />
+    <result column="identity_card" property="identityCard" jdbcType="VARCHAR" />
+    <result column="drive_license" property="driveLicense" jdbcType="VARCHAR" />
+    <result column="cellphone" property="cellphone" jdbcType="VARCHAR" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="gender" property="gender" jdbcType="CHAR" />
+    <result column="age" property="age" jdbcType="TINYINT" />
+    <result column="license_start_date" property="licenseStartDate" jdbcType="INTEGER" />
+    <result column="license_end_date" property="licenseEndDate" jdbcType="INTEGER" />
+    <result column="img" property="img" jdbcType="VARCHAR" />
+    <result column="car_id" property="carId" jdbcType="INTEGER" />
+    <result column="quasi_car_id" property="quasiCarId" jdbcType="INTEGER" />
+    <result column="last_login_time" property="lastLoginTime" jdbcType="INTEGER" />
+    <result column="last_logout_time" property="lastLogoutTime" jdbcType="INTEGER" />
+    <result column="rate" property="rate" jdbcType="INTEGER" />
+    <result column="city" property="city" jdbcType="VARCHAR" />
+    <result column="tel_code" property="telCode" jdbcType="INTEGER" />
+    <result column="device_id" property="deviceId" jdbcType="BIGINT" />
+    <result column="audit_status" property="auditStatus" jdbcType="INTEGER" />
+    <result column="license_type" property="licenseType" jdbcType="VARCHAR" />
+    <result column="license_img" property="licenseImg" jdbcType="VARCHAR" />
+    <result column="work_status" property="workStatus" jdbcType="TINYINT" />
+    <result column="work_status_tmp" property="workStatusTmp" jdbcType="TINYINT" />
+    <result column="shizhu_price_value" property="shizhuPriceValue" jdbcType="INTEGER" />
+    <result column="fp_price_value" property="fpPriceValue" jdbcType="INTEGER" />
+    <result column="contribution" property="contribution" jdbcType="INTEGER" />
+    <result column="contribution_ext" property="contributionExt" jdbcType="INTEGER" />
+    <result column="score" property="score" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="INTEGER" />
+    <result column="first_confirm_time" property="firstConfirmTime" jdbcType="INTEGER" />
+    <result column="info_source" property="infoSource" jdbcType="BIT" />
+    <result column="training_time" property="trainingTime" jdbcType="INTEGER" />
+    <result column="pre_audit_fault_reason" property="preAuditFaultReason" jdbcType="VARCHAR" />
+    <result column="permanent_address" property="permanentAddress" jdbcType="VARCHAR" />
+    <result column="phone_model" property="phoneModel" jdbcType="VARCHAR" />
+    <result column="bank" property="bank" jdbcType="VARCHAR" />
+    <result column="bank_card" property="bankCard" jdbcType="VARCHAR" />
+    <result column="audit_fault_reason" property="auditFaultReason" jdbcType="VARCHAR" />
+    <result column="base_price_update_time" property="basePriceUpdateTime" jdbcType="INTEGER" />
+    <result column="airport_price_update_time" property="airportPriceUpdateTime" jdbcType="INTEGER" />
+    <result column="sign_at" property="signAt" jdbcType="INTEGER" />
+    <result column="expired_at" property="expiredAt" jdbcType="INTEGER" />
+    <result column="accept_count" property="acceptCount" jdbcType="INTEGER" />
+    <result column="silence_end_at" property="silenceEndAt" jdbcType="INTEGER" />
+    <result column="evaluation" property="evaluation" jdbcType="INTEGER" />
+    <result column="has_qualified" property="hasQualified" jdbcType="BIT" />
+    <result column="last_annual_at" property="lastAnnualAt" jdbcType="INTEGER" />
+    <result column="annual_score" property="annualScore" jdbcType="INTEGER" />
+    <result column="next_annual_start" property="nextAnnualStart" jdbcType="INTEGER" />
+    <result column="next_annual_end" property="nextAnnualEnd" jdbcType="INTEGER" />
+    <result column="manager" property="manager" jdbcType="VARCHAR" />
+    <result column="base_score" property="baseScore" jdbcType="INTEGER" />
+    <result column="recent_accepted_count" property="recentAcceptedCount" jdbcType="INTEGER" />
+    <result column="unittime_complete_count" property="unittimeCompleteCount" jdbcType="INTEGER" />
+    <result column="has_logistics" property="hasLogistics" jdbcType="BIT" />
+    <result column="selfintroduction" property="selfintroduction" jdbcType="VARCHAR" />
+    <result column="car_setup" property="carSetup" jdbcType="VARCHAR" />
+    <result column="agent_operator_id" property="agentOperatorId" jdbcType="INTEGER" />
+    <result column="agent_id" property="agentId" jdbcType="INTEGER" />
+    <result column="is_self_employed" property="isSelfEmployed" jdbcType="TINYINT" />
+    <result column="selling_point" property="sellingPoint" jdbcType="VARCHAR" />
+    <result column="check_score" property="checkScore" jdbcType="INTEGER" />
+    <result column="area_code" property="areaCode" jdbcType="VARCHAR" />
+    <result column="country" property="country" jdbcType="VARCHAR" />
+    <result column="passport" property="passport" jdbcType="VARCHAR" />
+    <result column="surpport_face_pay" property="surpportFacePay" jdbcType="TINYINT" />
+    <result column="good_comment_count" property="goodCommentCount" jdbcType="INTEGER" />
+    <result column="bad_comment_count" property="badCommentCount" jdbcType="INTEGER" />
+    <result column="good_comment_rate" property="goodCommentRate" jdbcType="INTEGER" />
+    <result column="is_balance_bad" property="isBalanceBad" jdbcType="TINYINT" />
+    <result column="service_manager_id" property="serviceManagerId" jdbcType="INTEGER" />
+    <result column="flag" property="flag" jdbcType="INTEGER" />
+    <result column="account_id" property="accountId" jdbcType="BIGINT" />
+    <result column="car_facility_tag_id" property="carFacilityTagId" jdbcType="VARCHAR" />
+    <result column="complete_count" property="completeCount" jdbcType="INTEGER" />
+    <result column="bank_code" property="bankCode" jdbcType="VARCHAR" />
+    <result column="driver_type" property="driverType" jdbcType="INTEGER" />
+    <result column="avatar_status" property="avatarStatus" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="levelup_status" property="levelupStatus" jdbcType="INTEGER" />
+    <result column="dispatch_type" property="dispatchType" jdbcType="INTEGER" />
+    <result column="discount_rate" property="discountRate" jdbcType="INTEGER" />
+    <result column="driver_level" property="driverLevel" jdbcType="TINYINT" />
+    <result column="driver_score" property="driverScore" jdbcType="INTEGER" />
+    <result column="service_score" property="serviceScore" jdbcType="TINYINT" />
+    <result column="life" property="life" jdbcType="TINYINT" />
+    <result column="examination_score" property="examinationScore" jdbcType="INTEGER" />
+    <result column="isverify_car" property="isverifyCar" jdbcType="TINYINT" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.yc.feed.domain.entity.Driver" extends="BaseResultMap" >
+    <result column="comment" property="comment" jdbcType="LONGVARCHAR" />
+    <result column="photo_id" property="photoId" jdbcType="VARBINARY" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    driver_id, company_id, labour_company_id, name, login_name, password, identity_card,
+    drive_license, cellphone, email, gender, age, license_start_date, license_end_date,
+    img, car_id, quasi_car_id, last_login_time, last_logout_time, rate, city, tel_code,
+    device_id, audit_status, license_type, license_img, work_status, work_status_tmp,
+    shizhu_price_value, fp_price_value, contribution, contribution_ext, score, create_time,
+    first_confirm_time, info_source, training_time, pre_audit_fault_reason, permanent_address,
+    phone_model, bank, bank_card, audit_fault_reason, base_price_update_time, airport_price_update_time,
+    sign_at, expired_at, accept_count, silence_end_at, evaluation, has_qualified, last_annual_at,
+    annual_score, next_annual_start, next_annual_end, manager, base_score, recent_accepted_count,
+    unittime_complete_count, has_logistics, selfintroduction, car_setup, agent_operator_id,
+    agent_id, is_self_employed, selling_point, check_score, area_code, country, passport,
+    surpport_face_pay, good_comment_count, bad_comment_count, good_comment_rate, is_balance_bad,
+    service_manager_id, flag, account_id, car_facility_tag_id, complete_count, bank_code,
+    driver_type, avatar_status, status, levelup_status, dispatch_type, discount_rate,
+    driver_level, driver_score, service_score, life, examination_score, isverify_car
+  </sql>
+  <sql id="Blob_Column_List" >
+    comment, photo_id
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from driver
+    where driver_id = #{driverId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from driver
+    where driver_id = #{driverId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.yc.feed.domain.entity.Driver" >
+    insert into driver (driver_id, company_id, labour_company_id,
+    name, login_name, password,
+    identity_card, drive_license, cellphone,
+    email, gender, age, license_start_date,
+    license_end_date, img, car_id,
+    quasi_car_id, last_login_time, last_logout_time,
+    rate, city, tel_code,
+    device_id, audit_status, license_type,
+    license_img, work_status, work_status_tmp,
+    shizhu_price_value, fp_price_value, contribution,
+    contribution_ext, score, create_time,
+    first_confirm_time, info_source, training_time,
+    pre_audit_fault_reason, permanent_address,
+    phone_model, bank, bank_card,
+    audit_fault_reason, base_price_update_time,
+    airport_price_update_time, sign_at, expired_at,
+    accept_count, silence_end_at, evaluation,
+    has_qualified, last_annual_at, annual_score,
+    next_annual_start, next_annual_end, manager,
+    base_score, recent_accepted_count, unittime_complete_count,
+    has_logistics, selfintroduction, car_setup,
+    agent_operator_id, agent_id, is_self_employed,
+    selling_point, check_score, area_code,
+    country, passport, surpport_face_pay,
+    good_comment_count, bad_comment_count, good_comment_rate,
+    is_balance_bad, service_manager_id, flag,
+    account_id, car_facility_tag_id, complete_count,
+    bank_code, driver_type, avatar_status,
+    status, levelup_status, dispatch_type,
+    discount_rate, driver_level, driver_score,
+    service_score, life, examination_score,
+    isverify_car, comment, photo_id
+    )
+    values (#{driverId,jdbcType=INTEGER}, #{companyId,jdbcType=INTEGER}, #{labourCompanyId,jdbcType=INTEGER},
+    #{name,jdbcType=VARCHAR}, #{loginName,jdbcType=VARCHAR}, #{password,jdbcType=CHAR},
+    #{identityCard,jdbcType=VARCHAR}, #{driveLicense,jdbcType=VARCHAR}, #{cellphone,jdbcType=VARCHAR},
+    #{email,jdbcType=VARCHAR}, #{gender,jdbcType=CHAR}, #{age,jdbcType=TINYINT}, #{licenseStartDate,jdbcType=INTEGER},
+    #{licenseEndDate,jdbcType=INTEGER}, #{img,jdbcType=VARCHAR}, #{carId,jdbcType=INTEGER},
+    #{quasiCarId,jdbcType=INTEGER}, #{lastLoginTime,jdbcType=INTEGER}, #{lastLogoutTime,jdbcType=INTEGER},
+    #{rate,jdbcType=INTEGER}, #{city,jdbcType=VARCHAR}, #{telCode,jdbcType=INTEGER},
+    #{deviceId,jdbcType=BIGINT}, #{auditStatus,jdbcType=INTEGER}, #{licenseType,jdbcType=VARCHAR},
+    #{licenseImg,jdbcType=VARCHAR}, #{workStatus,jdbcType=TINYINT}, #{workStatusTmp,jdbcType=TINYINT},
+    #{shizhuPriceValue,jdbcType=INTEGER}, #{fpPriceValue,jdbcType=INTEGER}, #{contribution,jdbcType=INTEGER},
+    #{contributionExt,jdbcType=INTEGER}, #{score,jdbcType=INTEGER}, #{createTime,jdbcType=INTEGER},
+    #{firstConfirmTime,jdbcType=INTEGER}, #{infoSource,jdbcType=BIT}, #{trainingTime,jdbcType=INTEGER},
+    #{preAuditFaultReason,jdbcType=VARCHAR}, #{permanentAddress,jdbcType=VARCHAR},
+    #{phoneModel,jdbcType=VARCHAR}, #{bank,jdbcType=VARCHAR}, #{bankCard,jdbcType=VARCHAR},
+    #{auditFaultReason,jdbcType=VARCHAR}, #{basePriceUpdateTime,jdbcType=INTEGER},
+    #{airportPriceUpdateTime,jdbcType=INTEGER}, #{signAt,jdbcType=INTEGER}, #{expiredAt,jdbcType=INTEGER},
+    #{acceptCount,jdbcType=INTEGER}, #{silenceEndAt,jdbcType=INTEGER}, #{evaluation,jdbcType=INTEGER},
+    #{hasQualified,jdbcType=BIT}, #{lastAnnualAt,jdbcType=INTEGER}, #{annualScore,jdbcType=INTEGER},
+    #{nextAnnualStart,jdbcType=INTEGER}, #{nextAnnualEnd,jdbcType=INTEGER}, #{manager,jdbcType=VARCHAR},
+    #{baseScore,jdbcType=INTEGER}, #{recentAcceptedCount,jdbcType=INTEGER}, #{unittimeCompleteCount,jdbcType=INTEGER},
+    #{hasLogistics,jdbcType=BIT}, #{selfintroduction,jdbcType=VARCHAR}, #{carSetup,jdbcType=VARCHAR},
+    #{agentOperatorId,jdbcType=INTEGER}, #{agentId,jdbcType=INTEGER}, #{isSelfEmployed,jdbcType=TINYINT},
+    #{sellingPoint,jdbcType=VARCHAR}, #{checkScore,jdbcType=INTEGER}, #{areaCode,jdbcType=VARCHAR},
+    #{country,jdbcType=VARCHAR}, #{passport,jdbcType=VARCHAR}, #{surpportFacePay,jdbcType=TINYINT},
+    #{goodCommentCount,jdbcType=INTEGER}, #{badCommentCount,jdbcType=INTEGER}, #{goodCommentRate,jdbcType=INTEGER},
+    #{isBalanceBad,jdbcType=TINYINT}, #{serviceManagerId,jdbcType=INTEGER}, #{flag,jdbcType=INTEGER},
+    #{accountId,jdbcType=BIGINT}, #{carFacilityTagId,jdbcType=VARCHAR}, #{completeCount,jdbcType=INTEGER},
+    #{bankCode,jdbcType=VARCHAR}, #{driverType,jdbcType=INTEGER}, #{avatarStatus,jdbcType=INTEGER},
+    #{status,jdbcType=INTEGER}, #{levelupStatus,jdbcType=INTEGER}, #{dispatchType,jdbcType=INTEGER},
+    #{discountRate,jdbcType=INTEGER}, #{driverLevel,jdbcType=TINYINT}, #{driverScore,jdbcType=INTEGER},
+    #{serviceScore,jdbcType=TINYINT}, #{life,jdbcType=TINYINT}, #{examinationScore,jdbcType=INTEGER},
+    #{isverifyCar,jdbcType=TINYINT}, #{comment,jdbcType=LONGVARCHAR}, #{photoId,jdbcType=VARBINARY}
+    )
+  </insert>
+  <insert id="insertSelective" parameterType="com.yc.feed.domain.entity.Driver" >
+    insert into driver
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="driverId != null" >
+        driver_id,
+      </if>
+      <if test="companyId != null" >
+        company_id,
+      </if>
+      <if test="labourCompanyId != null" >
+        labour_company_id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="loginName != null" >
+        login_name,
+      </if>
+      <if test="password != null" >
+        password,
+      </if>
+      <if test="identityCard != null" >
+        identity_card,
+      </if>
+      <if test="driveLicense != null" >
+        drive_license,
+      </if>
+      <if test="cellphone != null" >
+        cellphone,
+      </if>
+      <if test="email != null" >
+        email,
+      </if>
+      <if test="gender != null" >
+        gender,
+      </if>
+      <if test="age != null" >
+        age,
+      </if>
+      <if test="licenseStartDate != null" >
+        license_start_date,
+      </if>
+      <if test="licenseEndDate != null" >
+        license_end_date,
+      </if>
+      <if test="img != null" >
+        img,
+      </if>
+      <if test="carId != null" >
+        car_id,
+      </if>
+      <if test="quasiCarId != null" >
+        quasi_car_id,
+      </if>
+      <if test="lastLoginTime != null" >
+        last_login_time,
+      </if>
+      <if test="lastLogoutTime != null" >
+        last_logout_time,
+      </if>
+      <if test="rate != null" >
+        rate,
+      </if>
+      <if test="city != null" >
+        city,
+      </if>
+      <if test="telCode != null" >
+        tel_code,
+      </if>
+      <if test="deviceId != null" >
+        device_id,
+      </if>
+      <if test="auditStatus != null" >
+        audit_status,
+      </if>
+      <if test="licenseType != null" >
+        license_type,
+      </if>
+      <if test="licenseImg != null" >
+        license_img,
+      </if>
+      <if test="workStatus != null" >
+        work_status,
+      </if>
+      <if test="workStatusTmp != null" >
+        work_status_tmp,
+      </if>
+      <if test="shizhuPriceValue != null" >
+        shizhu_price_value,
+      </if>
+      <if test="fpPriceValue != null" >
+        fp_price_value,
+      </if>
+      <if test="contribution != null" >
+        contribution,
+      </if>
+      <if test="contributionExt != null" >
+        contribution_ext,
+      </if>
+      <if test="score != null" >
+        score,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="firstConfirmTime != null" >
+        first_confirm_time,
+      </if>
+      <if test="infoSource != null" >
+        info_source,
+      </if>
+      <if test="trainingTime != null" >
+        training_time,
+      </if>
+      <if test="preAuditFaultReason != null" >
+        pre_audit_fault_reason,
+      </if>
+      <if test="permanentAddress != null" >
+        permanent_address,
+      </if>
+      <if test="phoneModel != null" >
+        phone_model,
+      </if>
+      <if test="bank != null" >
+        bank,
+      </if>
+      <if test="bankCard != null" >
+        bank_card,
+      </if>
+      <if test="auditFaultReason != null" >
+        audit_fault_reason,
+      </if>
+      <if test="basePriceUpdateTime != null" >
+        base_price_update_time,
+      </if>
+      <if test="airportPriceUpdateTime != null" >
+        airport_price_update_time,
+      </if>
+      <if test="signAt != null" >
+        sign_at,
+      </if>
+      <if test="expiredAt != null" >
+        expired_at,
+      </if>
+      <if test="acceptCount != null" >
+        accept_count,
+      </if>
+      <if test="silenceEndAt != null" >
+        silence_end_at,
+      </if>
+      <if test="evaluation != null" >
+        evaluation,
+      </if>
+      <if test="hasQualified != null" >
+        has_qualified,
+      </if>
+      <if test="lastAnnualAt != null" >
+        last_annual_at,
+      </if>
+      <if test="annualScore != null" >
+        annual_score,
+      </if>
+      <if test="nextAnnualStart != null" >
+        next_annual_start,
+      </if>
+      <if test="nextAnnualEnd != null" >
+        next_annual_end,
+      </if>
+      <if test="manager != null" >
+        manager,
+      </if>
+      <if test="baseScore != null" >
+        base_score,
+      </if>
+      <if test="recentAcceptedCount != null" >
+        recent_accepted_count,
+      </if>
+      <if test="unittimeCompleteCount != null" >
+        unittime_complete_count,
+      </if>
+      <if test="hasLogistics != null" >
+        has_logistics,
+      </if>
+      <if test="selfintroduction != null" >
+        selfintroduction,
+      </if>
+      <if test="carSetup != null" >
+        car_setup,
+      </if>
+      <if test="agentOperatorId != null" >
+        agent_operator_id,
+      </if>
+      <if test="agentId != null" >
+        agent_id,
+      </if>
+      <if test="isSelfEmployed != null" >
+        is_self_employed,
+      </if>
+      <if test="sellingPoint != null" >
+        selling_point,
+      </if>
+      <if test="checkScore != null" >
+        check_score,
+      </if>
+      <if test="areaCode != null" >
+        area_code,
+      </if>
+      <if test="country != null" >
+        country,
+      </if>
+      <if test="passport != null" >
+        passport,
+      </if>
+      <if test="surpportFacePay != null" >
+        surpport_face_pay,
+      </if>
+      <if test="goodCommentCount != null" >
+        good_comment_count,
+      </if>
+      <if test="badCommentCount != null" >
+        bad_comment_count,
+      </if>
+      <if test="goodCommentRate != null" >
+        good_comment_rate,
+      </if>
+      <if test="isBalanceBad != null" >
+        is_balance_bad,
+      </if>
+      <if test="serviceManagerId != null" >
+        service_manager_id,
+      </if>
+      <if test="flag != null" >
+        flag,
+      </if>
+      <if test="accountId != null" >
+        account_id,
+      </if>
+      <if test="carFacilityTagId != null" >
+        car_facility_tag_id,
+      </if>
+      <if test="completeCount != null" >
+        complete_count,
+      </if>
+      <if test="bankCode != null" >
+        bank_code,
+      </if>
+      <if test="driverType != null" >
+        driver_type,
+      </if>
+      <if test="avatarStatus != null" >
+        avatar_status,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="levelupStatus != null" >
+        levelup_status,
+      </if>
+      <if test="dispatchType != null" >
+        dispatch_type,
+      </if>
+      <if test="discountRate != null" >
+        discount_rate,
+      </if>
+      <if test="driverLevel != null" >
+        driver_level,
+      </if>
+      <if test="driverScore != null" >
+        driver_score,
+      </if>
+      <if test="serviceScore != null" >
+        service_score,
+      </if>
+      <if test="life != null" >
+        life,
+      </if>
+      <if test="examinationScore != null" >
+        examination_score,
+      </if>
+      <if test="isverifyCar != null" >
+        isverify_car,
+      </if>
+      <if test="comment != null" >
+        comment,
+      </if>
+      <if test="photoId != null" >
+        photo_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="driverId != null" >
+        #{driverId,jdbcType=INTEGER},
+      </if>
+      <if test="companyId != null" >
+        #{companyId,jdbcType=INTEGER},
+      </if>
+      <if test="labourCompanyId != null" >
+        #{labourCompanyId,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="loginName != null" >
+        #{loginName,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        #{password,jdbcType=CHAR},
+      </if>
+      <if test="identityCard != null" >
+        #{identityCard,jdbcType=VARCHAR},
+      </if>
+      <if test="driveLicense != null" >
+        #{driveLicense,jdbcType=VARCHAR},
+      </if>
+      <if test="cellphone != null" >
+        #{cellphone,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null" >
+        #{gender,jdbcType=CHAR},
+      </if>
+      <if test="age != null" >
+        #{age,jdbcType=TINYINT},
+      </if>
+      <if test="licenseStartDate != null" >
+        #{licenseStartDate,jdbcType=INTEGER},
+      </if>
+      <if test="licenseEndDate != null" >
+        #{licenseEndDate,jdbcType=INTEGER},
+      </if>
+      <if test="img != null" >
+        #{img,jdbcType=VARCHAR},
+      </if>
+      <if test="carId != null" >
+        #{carId,jdbcType=INTEGER},
+      </if>
+      <if test="quasiCarId != null" >
+        #{quasiCarId,jdbcType=INTEGER},
+      </if>
+      <if test="lastLoginTime != null" >
+        #{lastLoginTime,jdbcType=INTEGER},
+      </if>
+      <if test="lastLogoutTime != null" >
+        #{lastLogoutTime,jdbcType=INTEGER},
+      </if>
+      <if test="rate != null" >
+        #{rate,jdbcType=INTEGER},
+      </if>
+      <if test="city != null" >
+        #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="telCode != null" >
+        #{telCode,jdbcType=INTEGER},
+      </if>
+      <if test="deviceId != null" >
+        #{deviceId,jdbcType=BIGINT},
+      </if>
+      <if test="auditStatus != null" >
+        #{auditStatus,jdbcType=INTEGER},
+      </if>
+      <if test="licenseType != null" >
+        #{licenseType,jdbcType=VARCHAR},
+      </if>
+      <if test="licenseImg != null" >
+        #{licenseImg,jdbcType=VARCHAR},
+      </if>
+      <if test="workStatus != null" >
+        #{workStatus,jdbcType=TINYINT},
+      </if>
+      <if test="workStatusTmp != null" >
+        #{workStatusTmp,jdbcType=TINYINT},
+      </if>
+      <if test="shizhuPriceValue != null" >
+        #{shizhuPriceValue,jdbcType=INTEGER},
+      </if>
+      <if test="fpPriceValue != null" >
+        #{fpPriceValue,jdbcType=INTEGER},
+      </if>
+      <if test="contribution != null" >
+        #{contribution,jdbcType=INTEGER},
+      </if>
+      <if test="contributionExt != null" >
+        #{contributionExt,jdbcType=INTEGER},
+      </if>
+      <if test="score != null" >
+        #{score,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=INTEGER},
+      </if>
+      <if test="firstConfirmTime != null" >
+        #{firstConfirmTime,jdbcType=INTEGER},
+      </if>
+      <if test="infoSource != null" >
+        #{infoSource,jdbcType=BIT},
+      </if>
+      <if test="trainingTime != null" >
+        #{trainingTime,jdbcType=INTEGER},
+      </if>
+      <if test="preAuditFaultReason != null" >
+        #{preAuditFaultReason,jdbcType=VARCHAR},
+      </if>
+      <if test="permanentAddress != null" >
+        #{permanentAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="phoneModel != null" >
+        #{phoneModel,jdbcType=VARCHAR},
+      </if>
+      <if test="bank != null" >
+        #{bank,jdbcType=VARCHAR},
+      </if>
+      <if test="bankCard != null" >
+        #{bankCard,jdbcType=VARCHAR},
+      </if>
+      <if test="auditFaultReason != null" >
+        #{auditFaultReason,jdbcType=VARCHAR},
+      </if>
+      <if test="basePriceUpdateTime != null" >
+        #{basePriceUpdateTime,jdbcType=INTEGER},
+      </if>
+      <if test="airportPriceUpdateTime != null" >
+        #{airportPriceUpdateTime,jdbcType=INTEGER},
+      </if>
+      <if test="signAt != null" >
+        #{signAt,jdbcType=INTEGER},
+      </if>
+      <if test="expiredAt != null" >
+        #{expiredAt,jdbcType=INTEGER},
+      </if>
+      <if test="acceptCount != null" >
+        #{acceptCount,jdbcType=INTEGER},
+      </if>
+      <if test="silenceEndAt != null" >
+        #{silenceEndAt,jdbcType=INTEGER},
+      </if>
+      <if test="evaluation != null" >
+        #{evaluation,jdbcType=INTEGER},
+      </if>
+      <if test="hasQualified != null" >
+        #{hasQualified,jdbcType=BIT},
+      </if>
+      <if test="lastAnnualAt != null" >
+        #{lastAnnualAt,jdbcType=INTEGER},
+      </if>
+      <if test="annualScore != null" >
+        #{annualScore,jdbcType=INTEGER},
+      </if>
+      <if test="nextAnnualStart != null" >
+        #{nextAnnualStart,jdbcType=INTEGER},
+      </if>
+      <if test="nextAnnualEnd != null" >
+        #{nextAnnualEnd,jdbcType=INTEGER},
+      </if>
+      <if test="manager != null" >
+        #{manager,jdbcType=VARCHAR},
+      </if>
+      <if test="baseScore != null" >
+        #{baseScore,jdbcType=INTEGER},
+      </if>
+      <if test="recentAcceptedCount != null" >
+        #{recentAcceptedCount,jdbcType=INTEGER},
+      </if>
+      <if test="unittimeCompleteCount != null" >
+        #{unittimeCompleteCount,jdbcType=INTEGER},
+      </if>
+      <if test="hasLogistics != null" >
+        #{hasLogistics,jdbcType=BIT},
+      </if>
+      <if test="selfintroduction != null" >
+        #{selfintroduction,jdbcType=VARCHAR},
+      </if>
+      <if test="carSetup != null" >
+        #{carSetup,jdbcType=VARCHAR},
+      </if>
+      <if test="agentOperatorId != null" >
+        #{agentOperatorId,jdbcType=INTEGER},
+      </if>
+      <if test="agentId != null" >
+        #{agentId,jdbcType=INTEGER},
+      </if>
+      <if test="isSelfEmployed != null" >
+        #{isSelfEmployed,jdbcType=TINYINT},
+      </if>
+      <if test="sellingPoint != null" >
+        #{sellingPoint,jdbcType=VARCHAR},
+      </if>
+      <if test="checkScore != null" >
+        #{checkScore,jdbcType=INTEGER},
+      </if>
+      <if test="areaCode != null" >
+        #{areaCode,jdbcType=VARCHAR},
+      </if>
+      <if test="country != null" >
+        #{country,jdbcType=VARCHAR},
+      </if>
+      <if test="passport != null" >
+        #{passport,jdbcType=VARCHAR},
+      </if>
+      <if test="surpportFacePay != null" >
+        #{surpportFacePay,jdbcType=TINYINT},
+      </if>
+      <if test="goodCommentCount != null" >
+        #{goodCommentCount,jdbcType=INTEGER},
+      </if>
+      <if test="badCommentCount != null" >
+        #{badCommentCount,jdbcType=INTEGER},
+      </if>
+      <if test="goodCommentRate != null" >
+        #{goodCommentRate,jdbcType=INTEGER},
+      </if>
+      <if test="isBalanceBad != null" >
+        #{isBalanceBad,jdbcType=TINYINT},
+      </if>
+      <if test="serviceManagerId != null" >
+        #{serviceManagerId,jdbcType=INTEGER},
+      </if>
+      <if test="flag != null" >
+        #{flag,jdbcType=INTEGER},
+      </if>
+      <if test="accountId != null" >
+        #{accountId,jdbcType=BIGINT},
+      </if>
+      <if test="carFacilityTagId != null" >
+        #{carFacilityTagId,jdbcType=VARCHAR},
+      </if>
+      <if test="completeCount != null" >
+        #{completeCount,jdbcType=INTEGER},
+      </if>
+      <if test="bankCode != null" >
+        #{bankCode,jdbcType=VARCHAR},
+      </if>
+      <if test="driverType != null" >
+        #{driverType,jdbcType=INTEGER},
+      </if>
+      <if test="avatarStatus != null" >
+        #{avatarStatus,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="levelupStatus != null" >
+        #{levelupStatus,jdbcType=INTEGER},
+      </if>
+      <if test="dispatchType != null" >
+        #{dispatchType,jdbcType=INTEGER},
+      </if>
+      <if test="discountRate != null" >
+        #{discountRate,jdbcType=INTEGER},
+      </if>
+      <if test="driverLevel != null" >
+        #{driverLevel,jdbcType=TINYINT},
+      </if>
+      <if test="driverScore != null" >
+        #{driverScore,jdbcType=INTEGER},
+      </if>
+      <if test="serviceScore != null" >
+        #{serviceScore,jdbcType=TINYINT},
+      </if>
+      <if test="life != null" >
+        #{life,jdbcType=TINYINT},
+      </if>
+      <if test="examinationScore != null" >
+        #{examinationScore,jdbcType=INTEGER},
+      </if>
+      <if test="isverifyCar != null" >
+        #{isverifyCar,jdbcType=TINYINT},
+      </if>
+      <if test="comment != null" >
+        #{comment,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="photoId != null" >
+        #{photoId,jdbcType=VARBINARY},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yc.feed.domain.entity.Driver" >
+    update driver
+    <set >
+      <if test="companyId != null" >
+        company_id = #{companyId,jdbcType=INTEGER},
+      </if>
+      <if test="labourCompanyId != null" >
+        labour_company_id = #{labourCompanyId,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="loginName != null" >
+        login_name = #{loginName,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        password = #{password,jdbcType=CHAR},
+      </if>
+      <if test="identityCard != null" >
+        identity_card = #{identityCard,jdbcType=VARCHAR},
+      </if>
+      <if test="driveLicense != null" >
+        drive_license = #{driveLicense,jdbcType=VARCHAR},
+      </if>
+      <if test="cellphone != null" >
+        cellphone = #{cellphone,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null" >
+        gender = #{gender,jdbcType=CHAR},
+      </if>
+      <if test="age != null" >
+        age = #{age,jdbcType=TINYINT},
+      </if>
+      <if test="licenseStartDate != null" >
+        license_start_date = #{licenseStartDate,jdbcType=INTEGER},
+      </if>
+      <if test="licenseEndDate != null" >
+        license_end_date = #{licenseEndDate,jdbcType=INTEGER},
+      </if>
+      <if test="img != null" >
+        img = #{img,jdbcType=VARCHAR},
+      </if>
+      <if test="carId != null" >
+        car_id = #{carId,jdbcType=INTEGER},
+      </if>
+      <if test="quasiCarId != null" >
+        quasi_car_id = #{quasiCarId,jdbcType=INTEGER},
+      </if>
+      <if test="lastLoginTime != null" >
+        last_login_time = #{lastLoginTime,jdbcType=INTEGER},
+      </if>
+      <if test="lastLogoutTime != null" >
+        last_logout_time = #{lastLogoutTime,jdbcType=INTEGER},
+      </if>
+      <if test="rate != null" >
+        rate = #{rate,jdbcType=INTEGER},
+      </if>
+      <if test="city != null" >
+        city = #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="telCode != null" >
+        tel_code = #{telCode,jdbcType=INTEGER},
+      </if>
+      <if test="deviceId != null" >
+        device_id = #{deviceId,jdbcType=BIGINT},
+      </if>
+      <if test="auditStatus != null" >
+        audit_status = #{auditStatus,jdbcType=INTEGER},
+      </if>
+      <if test="licenseType != null" >
+        license_type = #{licenseType,jdbcType=VARCHAR},
+      </if>
+      <if test="licenseImg != null" >
+        license_img = #{licenseImg,jdbcType=VARCHAR},
+      </if>
+      <if test="workStatus != null" >
+        work_status = #{workStatus,jdbcType=TINYINT},
+      </if>
+      <if test="workStatusTmp != null" >
+        work_status_tmp = #{workStatusTmp,jdbcType=TINYINT},
+      </if>
+      <if test="shizhuPriceValue != null" >
+        shizhu_price_value = #{shizhuPriceValue,jdbcType=INTEGER},
+      </if>
+      <if test="fpPriceValue != null" >
+        fp_price_value = #{fpPriceValue,jdbcType=INTEGER},
+      </if>
+      <if test="contribution != null" >
+        contribution = #{contribution,jdbcType=INTEGER},
+      </if>
+      <if test="contributionExt != null" >
+        contribution_ext = #{contributionExt,jdbcType=INTEGER},
+      </if>
+      <if test="score != null" >
+        score = #{score,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=INTEGER},
+      </if>
+      <if test="firstConfirmTime != null" >
+        first_confirm_time = #{firstConfirmTime,jdbcType=INTEGER},
+      </if>
+      <if test="infoSource != null" >
+        info_source = #{infoSource,jdbcType=BIT},
+      </if>
+      <if test="trainingTime != null" >
+        training_time = #{trainingTime,jdbcType=INTEGER},
+      </if>
+      <if test="preAuditFaultReason != null" >
+        pre_audit_fault_reason = #{preAuditFaultReason,jdbcType=VARCHAR},
+      </if>
+      <if test="permanentAddress != null" >
+        permanent_address = #{permanentAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="phoneModel != null" >
+        phone_model = #{phoneModel,jdbcType=VARCHAR},
+      </if>
+      <if test="bank != null" >
+        bank = #{bank,jdbcType=VARCHAR},
+      </if>
+      <if test="bankCard != null" >
+        bank_card = #{bankCard,jdbcType=VARCHAR},
+      </if>
+      <if test="auditFaultReason != null" >
+        audit_fault_reason = #{auditFaultReason,jdbcType=VARCHAR},
+      </if>
+      <if test="basePriceUpdateTime != null" >
+        base_price_update_time = #{basePriceUpdateTime,jdbcType=INTEGER},
+      </if>
+      <if test="airportPriceUpdateTime != null" >
+        airport_price_update_time = #{airportPriceUpdateTime,jdbcType=INTEGER},
+      </if>
+      <if test="signAt != null" >
+        sign_at = #{signAt,jdbcType=INTEGER},
+      </if>
+      <if test="expiredAt != null" >
+        expired_at = #{expiredAt,jdbcType=INTEGER},
+      </if>
+      <if test="acceptCount != null" >
+        accept_count = #{acceptCount,jdbcType=INTEGER},
+      </if>
+      <if test="silenceEndAt != null" >
+        silence_end_at = #{silenceEndAt,jdbcType=INTEGER},
+      </if>
+      <if test="evaluation != null" >
+        evaluation = #{evaluation,jdbcType=INTEGER},
+      </if>
+      <if test="hasQualified != null" >
+        has_qualified = #{hasQualified,jdbcType=BIT},
+      </if>
+      <if test="lastAnnualAt != null" >
+        last_annual_at = #{lastAnnualAt,jdbcType=INTEGER},
+      </if>
+      <if test="annualScore != null" >
+        annual_score = #{annualScore,jdbcType=INTEGER},
+      </if>
+      <if test="nextAnnualStart != null" >
+        next_annual_start = #{nextAnnualStart,jdbcType=INTEGER},
+      </if>
+      <if test="nextAnnualEnd != null" >
+        next_annual_end = #{nextAnnualEnd,jdbcType=INTEGER},
+      </if>
+      <if test="manager != null" >
+        manager = #{manager,jdbcType=VARCHAR},
+      </if>
+      <if test="baseScore != null" >
+        base_score = #{baseScore,jdbcType=INTEGER},
+      </if>
+      <if test="recentAcceptedCount != null" >
+        recent_accepted_count = #{recentAcceptedCount,jdbcType=INTEGER},
+      </if>
+      <if test="unittimeCompleteCount != null" >
+        unittime_complete_count = #{unittimeCompleteCount,jdbcType=INTEGER},
+      </if>
+      <if test="hasLogistics != null" >
+        has_logistics = #{hasLogistics,jdbcType=BIT},
+      </if>
+      <if test="selfintroduction != null" >
+        selfintroduction = #{selfintroduction,jdbcType=VARCHAR},
+      </if>
+      <if test="carSetup != null" >
+        car_setup = #{carSetup,jdbcType=VARCHAR},
+      </if>
+      <if test="agentOperatorId != null" >
+        agent_operator_id = #{agentOperatorId,jdbcType=INTEGER},
+      </if>
+      <if test="agentId != null" >
+        agent_id = #{agentId,jdbcType=INTEGER},
+      </if>
+      <if test="isSelfEmployed != null" >
+        is_self_employed = #{isSelfEmployed,jdbcType=TINYINT},
+      </if>
+      <if test="sellingPoint != null" >
+        selling_point = #{sellingPoint,jdbcType=VARCHAR},
+      </if>
+      <if test="checkScore != null" >
+        check_score = #{checkScore,jdbcType=INTEGER},
+      </if>
+      <if test="areaCode != null" >
+        area_code = #{areaCode,jdbcType=VARCHAR},
+      </if>
+      <if test="country != null" >
+        country = #{country,jdbcType=VARCHAR},
+      </if>
+      <if test="passport != null" >
+        passport = #{passport,jdbcType=VARCHAR},
+      </if>
+      <if test="surpportFacePay != null" >
+        surpport_face_pay = #{surpportFacePay,jdbcType=TINYINT},
+      </if>
+      <if test="goodCommentCount != null" >
+        good_comment_count = #{goodCommentCount,jdbcType=INTEGER},
+      </if>
+      <if test="badCommentCount != null" >
+        bad_comment_count = #{badCommentCount,jdbcType=INTEGER},
+      </if>
+      <if test="goodCommentRate != null" >
+        good_comment_rate = #{goodCommentRate,jdbcType=INTEGER},
+      </if>
+      <if test="isBalanceBad != null" >
+        is_balance_bad = #{isBalanceBad,jdbcType=TINYINT},
+      </if>
+      <if test="serviceManagerId != null" >
+        service_manager_id = #{serviceManagerId,jdbcType=INTEGER},
+      </if>
+      <if test="flag != null" >
+        flag = #{flag,jdbcType=INTEGER},
+      </if>
+      <if test="accountId != null" >
+        account_id = #{accountId,jdbcType=BIGINT},
+      </if>
+      <if test="carFacilityTagId != null" >
+        car_facility_tag_id = #{carFacilityTagId,jdbcType=VARCHAR},
+      </if>
+      <if test="completeCount != null" >
+        complete_count = #{completeCount,jdbcType=INTEGER},
+      </if>
+      <if test="bankCode != null" >
+        bank_code = #{bankCode,jdbcType=VARCHAR},
+      </if>
+      <if test="driverType != null" >
+        driver_type = #{driverType,jdbcType=INTEGER},
+      </if>
+      <if test="avatarStatus != null" >
+        avatar_status = #{avatarStatus,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="levelupStatus != null" >
+        levelup_status = #{levelupStatus,jdbcType=INTEGER},
+      </if>
+      <if test="dispatchType != null" >
+        dispatch_type = #{dispatchType,jdbcType=INTEGER},
+      </if>
+      <if test="discountRate != null" >
+        discount_rate = #{discountRate,jdbcType=INTEGER},
+      </if>
+      <if test="driverLevel != null" >
+        driver_level = #{driverLevel,jdbcType=TINYINT},
+      </if>
+      <if test="driverScore != null" >
+        driver_score = #{driverScore,jdbcType=INTEGER},
+      </if>
+      <if test="serviceScore != null" >
+        service_score = #{serviceScore,jdbcType=TINYINT},
+      </if>
+      <if test="life != null" >
+        life = #{life,jdbcType=TINYINT},
+      </if>
+      <if test="examinationScore != null" >
+        examination_score = #{examinationScore,jdbcType=INTEGER},
+      </if>
+      <if test="isverifyCar != null" >
+        isverify_car = #{isverifyCar,jdbcType=TINYINT},
+      </if>
+      <if test="comment != null" >
+        comment = #{comment,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="photoId != null" >
+        photo_id = #{photoId,jdbcType=VARBINARY},
+      </if>
+    </set>
+    where driver_id = #{driverId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.yc.feed.domain.entity.Driver" >
+    update driver
+    set company_id = #{companyId,jdbcType=INTEGER},
+    labour_company_id = #{labourCompanyId,jdbcType=INTEGER},
+    name = #{name,jdbcType=VARCHAR},
+    login_name = #{loginName,jdbcType=VARCHAR},
+    password = #{password,jdbcType=CHAR},
+    identity_card = #{identityCard,jdbcType=VARCHAR},
+    drive_license = #{driveLicense,jdbcType=VARCHAR},
+    cellphone = #{cellphone,jdbcType=VARCHAR},
+    email = #{email,jdbcType=VARCHAR},
+    gender = #{gender,jdbcType=CHAR},
+    age = #{age,jdbcType=TINYINT},
+    license_start_date = #{licenseStartDate,jdbcType=INTEGER},
+    license_end_date = #{licenseEndDate,jdbcType=INTEGER},
+    img = #{img,jdbcType=VARCHAR},
+    car_id = #{carId,jdbcType=INTEGER},
+    quasi_car_id = #{quasiCarId,jdbcType=INTEGER},
+    last_login_time = #{lastLoginTime,jdbcType=INTEGER},
+    last_logout_time = #{lastLogoutTime,jdbcType=INTEGER},
+    rate = #{rate,jdbcType=INTEGER},
+    city = #{city,jdbcType=VARCHAR},
+    tel_code = #{telCode,jdbcType=INTEGER},
+    device_id = #{deviceId,jdbcType=BIGINT},
+    audit_status = #{auditStatus,jdbcType=INTEGER},
+    license_type = #{licenseType,jdbcType=VARCHAR},
+    license_img = #{licenseImg,jdbcType=VARCHAR},
+    work_status = #{workStatus,jdbcType=TINYINT},
+    work_status_tmp = #{workStatusTmp,jdbcType=TINYINT},
+    shizhu_price_value = #{shizhuPriceValue,jdbcType=INTEGER},
+    fp_price_value = #{fpPriceValue,jdbcType=INTEGER},
+    contribution = #{contribution,jdbcType=INTEGER},
+    contribution_ext = #{contributionExt,jdbcType=INTEGER},
+    score = #{score,jdbcType=INTEGER},
+    create_time = #{createTime,jdbcType=INTEGER},
+    first_confirm_time = #{firstConfirmTime,jdbcType=INTEGER},
+    info_source = #{infoSource,jdbcType=BIT},
+    training_time = #{trainingTime,jdbcType=INTEGER},
+    pre_audit_fault_reason = #{preAuditFaultReason,jdbcType=VARCHAR},
+    permanent_address = #{permanentAddress,jdbcType=VARCHAR},
+    phone_model = #{phoneModel,jdbcType=VARCHAR},
+    bank = #{bank,jdbcType=VARCHAR},
+    bank_card = #{bankCard,jdbcType=VARCHAR},
+    audit_fault_reason = #{auditFaultReason,jdbcType=VARCHAR},
+    base_price_update_time = #{basePriceUpdateTime,jdbcType=INTEGER},
+    airport_price_update_time = #{airportPriceUpdateTime,jdbcType=INTEGER},
+    sign_at = #{signAt,jdbcType=INTEGER},
+    expired_at = #{expiredAt,jdbcType=INTEGER},
+    accept_count = #{acceptCount,jdbcType=INTEGER},
+    silence_end_at = #{silenceEndAt,jdbcType=INTEGER},
+    evaluation = #{evaluation,jdbcType=INTEGER},
+    has_qualified = #{hasQualified,jdbcType=BIT},
+    last_annual_at = #{lastAnnualAt,jdbcType=INTEGER},
+    annual_score = #{annualScore,jdbcType=INTEGER},
+    next_annual_start = #{nextAnnualStart,jdbcType=INTEGER},
+    next_annual_end = #{nextAnnualEnd,jdbcType=INTEGER},
+    manager = #{manager,jdbcType=VARCHAR},
+    base_score = #{baseScore,jdbcType=INTEGER},
+    recent_accepted_count = #{recentAcceptedCount,jdbcType=INTEGER},
+    unittime_complete_count = #{unittimeCompleteCount,jdbcType=INTEGER},
+    has_logistics = #{hasLogistics,jdbcType=BIT},
+    selfintroduction = #{selfintroduction,jdbcType=VARCHAR},
+    car_setup = #{carSetup,jdbcType=VARCHAR},
+    agent_operator_id = #{agentOperatorId,jdbcType=INTEGER},
+    agent_id = #{agentId,jdbcType=INTEGER},
+    is_self_employed = #{isSelfEmployed,jdbcType=TINYINT},
+    selling_point = #{sellingPoint,jdbcType=VARCHAR},
+    check_score = #{checkScore,jdbcType=INTEGER},
+    area_code = #{areaCode,jdbcType=VARCHAR},
+    country = #{country,jdbcType=VARCHAR},
+    passport = #{passport,jdbcType=VARCHAR},
+    surpport_face_pay = #{surpportFacePay,jdbcType=TINYINT},
+    good_comment_count = #{goodCommentCount,jdbcType=INTEGER},
+    bad_comment_count = #{badCommentCount,jdbcType=INTEGER},
+    good_comment_rate = #{goodCommentRate,jdbcType=INTEGER},
+    is_balance_bad = #{isBalanceBad,jdbcType=TINYINT},
+    service_manager_id = #{serviceManagerId,jdbcType=INTEGER},
+    flag = #{flag,jdbcType=INTEGER},
+    account_id = #{accountId,jdbcType=BIGINT},
+    car_facility_tag_id = #{carFacilityTagId,jdbcType=VARCHAR},
+    complete_count = #{completeCount,jdbcType=INTEGER},
+    bank_code = #{bankCode,jdbcType=VARCHAR},
+    driver_type = #{driverType,jdbcType=INTEGER},
+    avatar_status = #{avatarStatus,jdbcType=INTEGER},
+    status = #{status,jdbcType=INTEGER},
+    levelup_status = #{levelupStatus,jdbcType=INTEGER},
+    dispatch_type = #{dispatchType,jdbcType=INTEGER},
+    discount_rate = #{discountRate,jdbcType=INTEGER},
+    driver_level = #{driverLevel,jdbcType=TINYINT},
+    driver_score = #{driverScore,jdbcType=INTEGER},
+    service_score = #{serviceScore,jdbcType=TINYINT},
+    life = #{life,jdbcType=TINYINT},
+    examination_score = #{examinationScore,jdbcType=INTEGER},
+    isverify_car = #{isverifyCar,jdbcType=TINYINT},
+    comment = #{comment,jdbcType=LONGVARCHAR},
+    photo_id = #{photoId,jdbcType=VARBINARY}
+    where driver_id = #{driverId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yc.feed.domain.entity.Driver" >
+    update driver
+    set company_id = #{companyId,jdbcType=INTEGER},
+      labour_company_id = #{labourCompanyId,jdbcType=INTEGER},
+      name = #{name,jdbcType=VARCHAR},
+      login_name = #{loginName,jdbcType=VARCHAR},
+      password = #{password,jdbcType=CHAR},
+      identity_card = #{identityCard,jdbcType=VARCHAR},
+      drive_license = #{driveLicense,jdbcType=VARCHAR},
+      cellphone = #{cellphone,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      gender = #{gender,jdbcType=CHAR},
+      age = #{age,jdbcType=TINYINT},
+      license_start_date = #{licenseStartDate,jdbcType=INTEGER},
+      license_end_date = #{licenseEndDate,jdbcType=INTEGER},
+      img = #{img,jdbcType=VARCHAR},
+      car_id = #{carId,jdbcType=INTEGER},
+      quasi_car_id = #{quasiCarId,jdbcType=INTEGER},
+      last_login_time = #{lastLoginTime,jdbcType=INTEGER},
+      last_logout_time = #{lastLogoutTime,jdbcType=INTEGER},
+      rate = #{rate,jdbcType=INTEGER},
+      city = #{city,jdbcType=VARCHAR},
+      tel_code = #{telCode,jdbcType=INTEGER},
+      device_id = #{deviceId,jdbcType=BIGINT},
+      audit_status = #{auditStatus,jdbcType=INTEGER},
+      license_type = #{licenseType,jdbcType=VARCHAR},
+      license_img = #{licenseImg,jdbcType=VARCHAR},
+      work_status = #{workStatus,jdbcType=TINYINT},
+      work_status_tmp = #{workStatusTmp,jdbcType=TINYINT},
+      shizhu_price_value = #{shizhuPriceValue,jdbcType=INTEGER},
+      fp_price_value = #{fpPriceValue,jdbcType=INTEGER},
+      contribution = #{contribution,jdbcType=INTEGER},
+      contribution_ext = #{contributionExt,jdbcType=INTEGER},
+      score = #{score,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=INTEGER},
+      first_confirm_time = #{firstConfirmTime,jdbcType=INTEGER},
+      info_source = #{infoSource,jdbcType=BIT},
+      training_time = #{trainingTime,jdbcType=INTEGER},
+      pre_audit_fault_reason = #{preAuditFaultReason,jdbcType=VARCHAR},
+      permanent_address = #{permanentAddress,jdbcType=VARCHAR},
+      phone_model = #{phoneModel,jdbcType=VARCHAR},
+      bank = #{bank,jdbcType=VARCHAR},
+      bank_card = #{bankCard,jdbcType=VARCHAR},
+      audit_fault_reason = #{auditFaultReason,jdbcType=VARCHAR},
+      base_price_update_time = #{basePriceUpdateTime,jdbcType=INTEGER},
+      airport_price_update_time = #{airportPriceUpdateTime,jdbcType=INTEGER},
+      sign_at = #{signAt,jdbcType=INTEGER},
+      expired_at = #{expiredAt,jdbcType=INTEGER},
+      accept_count = #{acceptCount,jdbcType=INTEGER},
+      silence_end_at = #{silenceEndAt,jdbcType=INTEGER},
+      evaluation = #{evaluation,jdbcType=INTEGER},
+      has_qualified = #{hasQualified,jdbcType=BIT},
+      last_annual_at = #{lastAnnualAt,jdbcType=INTEGER},
+      annual_score = #{annualScore,jdbcType=INTEGER},
+      next_annual_start = #{nextAnnualStart,jdbcType=INTEGER},
+      next_annual_end = #{nextAnnualEnd,jdbcType=INTEGER},
+      manager = #{manager,jdbcType=VARCHAR},
+      base_score = #{baseScore,jdbcType=INTEGER},
+      recent_accepted_count = #{recentAcceptedCount,jdbcType=INTEGER},
+      unittime_complete_count = #{unittimeCompleteCount,jdbcType=INTEGER},
+      has_logistics = #{hasLogistics,jdbcType=BIT},
+      selfintroduction = #{selfintroduction,jdbcType=VARCHAR},
+      car_setup = #{carSetup,jdbcType=VARCHAR},
+      agent_operator_id = #{agentOperatorId,jdbcType=INTEGER},
+      agent_id = #{agentId,jdbcType=INTEGER},
+      is_self_employed = #{isSelfEmployed,jdbcType=TINYINT},
+      selling_point = #{sellingPoint,jdbcType=VARCHAR},
+      check_score = #{checkScore,jdbcType=INTEGER},
+      area_code = #{areaCode,jdbcType=VARCHAR},
+      country = #{country,jdbcType=VARCHAR},
+      passport = #{passport,jdbcType=VARCHAR},
+      surpport_face_pay = #{surpportFacePay,jdbcType=TINYINT},
+      good_comment_count = #{goodCommentCount,jdbcType=INTEGER},
+      bad_comment_count = #{badCommentCount,jdbcType=INTEGER},
+      good_comment_rate = #{goodCommentRate,jdbcType=INTEGER},
+      is_balance_bad = #{isBalanceBad,jdbcType=TINYINT},
+      service_manager_id = #{serviceManagerId,jdbcType=INTEGER},
+      flag = #{flag,jdbcType=INTEGER},
+      account_id = #{accountId,jdbcType=BIGINT},
+      car_facility_tag_id = #{carFacilityTagId,jdbcType=VARCHAR},
+      complete_count = #{completeCount,jdbcType=INTEGER},
+      bank_code = #{bankCode,jdbcType=VARCHAR},
+      driver_type = #{driverType,jdbcType=INTEGER},
+      avatar_status = #{avatarStatus,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER},
+      levelup_status = #{levelupStatus,jdbcType=INTEGER},
+      dispatch_type = #{dispatchType,jdbcType=INTEGER},
+      discount_rate = #{discountRate,jdbcType=INTEGER},
+      driver_level = #{driverLevel,jdbcType=TINYINT},
+      driver_score = #{driverScore,jdbcType=INTEGER},
+      service_score = #{serviceScore,jdbcType=TINYINT},
+      life = #{life,jdbcType=TINYINT},
+      examination_score = #{examinationScore,jdbcType=INTEGER},
+      isverify_car = #{isverifyCar,jdbcType=TINYINT}
+    where driver_id = #{driverId,jdbcType=INTEGER}
+  </update>
+
+  <select id="getAllValidDriverIds" resultType="Long">
+    select driver_id
+    from driver
+    where audit_status = 20 and car_id > 0 and device_id > 0 and mod(driver_id,#{0}) = #{1}
+  </select>
+</mapper>

@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yc.feed.dao.crm.DriverEvaluationOrderMapper" >
+  <resultMap id="BaseResultMap" type="com.yc.feed.domain.entity.DriverEvaluationOrder" >
+    <id column="driver_evaluation_order_id" property="driverEvaluationOrderId" jdbcType="INTEGER" />
+    <result column="driver_id" property="driverId" jdbcType="INTEGER" />
+    <result column="recent_order_string" property="recentOrderString" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="INTEGER" />
+    <result column="update_time" property="updateTime" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    driver_evaluation_order_id, driver_id, recent_order_string, create_time, update_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from driver_evaluation_order
+    where driver_evaluation_order_id = #{driverEvaluationOrderId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from driver_evaluation_order
+    where driver_evaluation_order_id = #{driverEvaluationOrderId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.yc.feed.domain.entity.DriverEvaluationOrder" >
+    insert into driver_evaluation_order (driver_evaluation_order_id, driver_id, 
+      recent_order_string, create_time, update_time
+      )
+    values (#{driverEvaluationOrderId,jdbcType=INTEGER}, #{driverId,jdbcType=INTEGER}, 
+      #{recentOrderString,jdbcType=VARCHAR}, #{createTime,jdbcType=INTEGER}, #{updateTime,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.yc.feed.domain.entity.DriverEvaluationOrder" >
+    insert into driver_evaluation_order
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="driverEvaluationOrderId != null" >
+        driver_evaluation_order_id,
+      </if>
+      <if test="driverId != null" >
+        driver_id,
+      </if>
+      <if test="recentOrderString != null" >
+        recent_order_string,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="driverEvaluationOrderId != null" >
+        #{driverEvaluationOrderId,jdbcType=INTEGER},
+      </if>
+      <if test="driverId != null" >
+        #{driverId,jdbcType=INTEGER},
+      </if>
+      <if test="recentOrderString != null" >
+        #{recentOrderString,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yc.feed.domain.entity.DriverEvaluationOrder" >
+    update driver_evaluation_order
+    <set >
+      <if test="driverId != null" >
+        driver_id = #{driverId,jdbcType=INTEGER},
+      </if>
+      <if test="recentOrderString != null" >
+        recent_order_string = #{recentOrderString,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=INTEGER},
+      </if>
+    </set>
+    where driver_evaluation_order_id = #{driverEvaluationOrderId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yc.feed.domain.entity.DriverEvaluationOrder" >
+    update driver_evaluation_order
+    set driver_id = #{driverId,jdbcType=INTEGER},
+      recent_order_string = #{recentOrderString,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=INTEGER},
+      update_time = #{updateTime,jdbcType=INTEGER}
+    where driver_evaluation_order_id = #{driverEvaluationOrderId,jdbcType=INTEGER}
+  </update>
+
+  <select id="selectByDriverId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select
+    <include refid="Base_Column_List" />
+    from driver_evaluation_order
+    where driver_id = #{driverId,jdbcType=INTEGER}
+    ORDER BY update_time DESC
+    limit 0,1
+  </select>
+
+  <update id="updateOrder" parameterType="com.yc.feed.domain.entity.DriverEvaluationOrder" >
+    update driver_evaluation_order
+    set
+    recent_order_string = #{recentOrderString,jdbcType=VARCHAR},
+    update_time = #{updateTime,jdbcType=INTEGER}
+    where driver_evaluation_order_id = #{driverEvaluationOrderId,jdbcType=INTEGER}
+  </update>
+</mapper>

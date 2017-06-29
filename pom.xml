@@ -1,0 +1,617 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.yongche</groupId>
+	<artifactId>yc-feed-parent</artifactId>
+	<version>1.0.0-SNAPSHOT</version>
+	<name>${project.artifactId}</name>
+	<description>${project.artifactId}</description>
+	<packaging>pom</packaging>
+
+
+	<profiles>
+
+		<!--测试环境 -->
+		<profile>
+			<id>test</id>
+			<properties>
+				<!-- 编译环境 -->
+				<env>test</env>
+				<!-- 系统名称 -->
+				<profile.project.name>易到评价系统</profile.project.name>
+				<zookeeper.server.lists>10.0.11.175:2181,10.0.11.176:2181,10.0.11.177:2181</zookeeper.server.lists>
+				<!-- config center -->
+				<config.center.appName>feed_dev</config.center.appName>
+				<config.center.baseFolder>/feed/tomcat8.0/webapps</config.center.baseFolder>
+				<config.center.remoteServer>http://10.0.13.11:9000/rpc/download</config.center.remoteServer>
+				<config.center.token>niybpjod</config.center.token>
+				<config.center.connectTimeout>6000</config.center.connectTimeout>
+				<config.center.readTimeout>6000</config.center.readTimeout>
+				<config.center.remoteCheckInterval>6</config.center.remoteCheckInterval>
+			</properties>
+		</profile>
+
+
+		<!--生产环境 -->
+		<profile>
+			<id>product</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<properties>
+				<!-- 编译环境 -->
+				<env>product</env>
+				<!-- 系统名称 -->
+				<profile.project.name>易到评价系统</profile.project.name>
+				<!--日志-->
+				<!--<profile.logger.level>info</profile.logger.level>
+				<profile.logger.sql>false</profile.logger.sql>
+				<profile.logger.sql.show>info</profile.logger.sql.show>
+				<profile.logger.file>/home/y/var/logs/feed-web/yc_feed.log</profile.logger.file>
+				<profile.logger.error.file>/home/y/var/logs/feed-web/yc_feed_error.log</profile.logger.error.file>
+				&lt;!&ndash; 数据库 checked &ndash;&gt;
+				<profile.db.driverClassName>com.mysql.jdbc.Driver</profile.db.driverClassName>
+				<profile.db.initialSize>1</profile.db.initialSize>
+				<profile.db.maxActive>20</profile.db.maxActive>
+				<profile.db.maxIdle>20</profile.db.maxIdle>
+				<profile.db.minIdle>10</profile.db.minIdle>
+				<profile.feed.db.url><![CDATA[jdbc:mysql://172.17.254.29:3306/yc_core?useUnicode=true&amp;characterEncoding=utf8]]></profile.feed.db.url>
+				<profile.feed.db.username>userevaluation</profile.feed.db.username>
+				<profile.feed.db.password><![CDATA[VI8GEJQOcAmo2BmVZT0]]></profile.feed.db.password>
+
+				&lt;!&ndash;crm数据库 checked&ndash;&gt;
+				<profile.crm.db.url><![CDATA[jdbc:mysql://172.17.254.30:3306/yc_crm_common?useUnicode=true&amp;characterEncoding=utf8]]></profile.crm.db.url>
+				<profile.crm.db.username>userevaluation</profile.crm.db.username>
+				<profile.crm.db.password><![CDATA[VI8GEJQOcAmo2BmVZT0]]></profile.crm.db.password>
+
+				&lt;!&ndash;订单评价超时时间（小时）&ndash;&gt;
+				<profile.feed.commnet.time.out>24</profile.feed.commnet.time.out>
+
+				&lt;!&ndash; thrift配置 &ndash;&gt;
+				&lt;!&ndash;<thrift.registry.address>10.0.11.198:2181,10.0.11.192:2181,10.0.11.193:2181</thrift.registry.address>&ndash;&gt;
+
+				&lt;!&ndash; rabbit配置 checked&ndash;&gt;
+				<rabbit.registry.address>172.17.2.20:5672,172.17.2.26:5672</rabbit.registry.address>
+				<rabbit.registry.vhost>/feed</rabbit.registry.vhost>
+				<rabbit.registry.username>yc_feed</rabbit.registry.username>
+				<rabbit.registry.password>X2wo0abG</rabbit.registry.password>
+				<rabbit.comment.exchange.name>feed.exchange.comment</rabbit.comment.exchange.name>
+				<rabbit.comment.queue.name>feed.queue.comment</rabbit.comment.queue.name>
+				<rabbit.comment.routing.key>feed.key.comment</rabbit.comment.routing.key>
+				<rabbit.activity.exchange.name>feed.exchange.activity</rabbit.activity.exchange.name>
+				<rabbit.activity.queue.name>feed.queue.activity</rabbit.activity.queue.name>
+				<rabbit.activity.routing.key>feed.key.activity</rabbit.activity.routing.key>
+
+				&lt;!&ndash;司机端MQ配置 checked&ndash;&gt;
+				&lt;!&ndash;<rabbit.registry.driver.address>172.17.0.13:5672,172.17.0.11:5672</rabbit.registry.driver.address>
+				<rabbit.registry.driver.vhost>/driver</rabbit.registry.driver.vhost>
+				<rabbit.registry.driver.username>yongche</rabbit.registry.driver.username>
+				<rabbit.registry.driver.password>fhu7qjhgfy3</rabbit.registry.driver.password>&ndash;&gt;
+
+				<rabbit.registry.driver.address>172.17.0.170:5672,172.17.0.171:5672</rabbit.registry.driver.address>
+				<rabbit.registry.driver.vhost>/driver</rabbit.registry.driver.vhost>
+				<rabbit.registry.driver.username>feed_driver</rabbit.registry.driver.username>
+				<rabbit.registry.driver.password>fhu9qjhgfy7</rabbit.registry.driver.password>
+
+				<rabbit.driver.exchange.name>driver_level_evaluation</rabbit.driver.exchange.name>
+				<rabbit.driver.queue.name>driver_level_evaluation_q</rabbit.driver.queue.name>
+				<rabbit.driver.routing.key>driver_level_evaluation_q</rabbit.driver.routing.key>
+				&lt;!&ndash; 司机最近50单好评率配置&ndash;&gt;
+				<rabbit.driver.rate.exchange.name>feed.exchange.driver.evaluation</rabbit.driver.rate.exchange.name>
+				<rabbit.driver.rate.queue.name>feed.queue.driver.evaluation</rabbit.driver.rate.queue.name>
+				<rabbit.driver.rate.routing.key>feed.key.driver.evaluation</rabbit.driver.rate.routing.key>
+
+				&lt;!&ndash; 订单系统MQ配置 checked&ndash;&gt;
+				<rabbit.registry.order.address>172.17.0.11:5672,172.17.0.13:5672</rabbit.registry.order.address>
+				<rabbit.registry.order.vhost>/order</rabbit.registry.order.vhost>
+				<rabbit.registry.order.username>yongche</rabbit.registry.order.username>
+				<rabbit.registry.order.password>fhu7qjhgfy3</rabbit.registry.order.password>
+
+				<profile.feed.mongo.slaves1.url><![CDATA[jdbc:mysql://172.17.2.27:3306/yc_feed_0]]></profile.feed.mongo.slaves1.url>
+				<profile.feed.mongo.slaves1.username>yc_feed</profile.feed.mongo.slaves1.username>
+				<profile.feed.mongo.slaves1.password><![CDATA[OUBibIEEalXy4Kwo]]></profile.feed.mongo.slaves1.password>
+
+				<profile.feed.mongo.slaves2.url><![CDATA[jdbc:mysql://172.17.2.29:3306/yc_feed_64]]></profile.feed.mongo.slaves2.url>
+				<profile.feed.mongo.slaves2.username>yc_feed</profile.feed.mongo.slaves2.username>
+				<profile.feed.mongo.slaves2.password><![CDATA[OUBibIEEalXy4Kwo]]></profile.feed.mongo.slaves2.password>
+
+				&lt;!&ndash; redis配置 checked&ndash;&gt;
+				<profile.yc.redis.master1.address>172.17.2.30</profile.yc.redis.master1.address>
+				<profile.yc.redis.master1.port>6001</profile.yc.redis.master1.port>
+				<profile.yc.redis.master1.pass><![CDATA[d8dh3&amp;dfk]]></profile.yc.redis.master1.pass>
+				<profile.yc.redis.master2.address>172.17.2.33</profile.yc.redis.master2.address>
+				<profile.yc.redis.master2.port>6001</profile.yc.redis.master2.port>
+				<profile.yc.redis.master2.pass><![CDATA[d8dh3&amp;dfk]]></profile.yc.redis.master2.pass>
+				<profile.yc.redis.master3.address>172.17.2.35</profile.yc.redis.master3.address>
+				<profile.yc.redis.master3.port>6001</profile.yc.redis.master3.port>
+				<profile.yc.redis.master3.pass><![CDATA[d8dh3&amp;dfk]]></profile.yc.redis.master3.pass>
+
+
+				&lt;!&ndash; 平台调用配置 checked&ndash;&gt;
+				<platform.config.host1>172.17.0.77:5201</platform.config.host1>
+				<platform.config.host2>172.17.0.78:5201</platform.config.host2>
+				<platform.config.order.path>order/updateFlag</platform.config.order.path>
+				<platform.config.track.path>orderTrack/appendTrack</platform.config.track.path>
+				<platform.config.servicecount.path>order/getDriverServiceCount</platform.config.servicecount.path>
+
+				&lt;!&ndash; 司机最近50单好评率请求地址  &ndash;&gt;
+				<feed.service.driver.rate.url>http://merchant.yongche.com/V1/Driver/updateDriverById</feed.service.driver.rate.url>
+
+				&lt;!&ndash;查询白名单请求地址 &ndash;&gt;
+				<feed.service.driver.white.list.url>http://merchant.yongche.com/V1/Driver/getDriverIdByBrandCarId</feed.service.driver.white.list.url>
+				<feed.service.driver.white.cache.time>3600</feed.service.driver.white.cache.time>
+
+				&lt;!&ndash; 用户收藏中根据driverid获得司机所在城市 &ndash;&gt;
+				<feed.service.collect.url>http://merchant.yongche.com/V1/Driver/getDriver</feed.service.collect.url>-->
+
+				<zookeeper.server.lists>172.17.0.99:2181,172.17.0.87:2181,172.17.0.79:2181</zookeeper.server.lists>
+				<!-- config center -->
+				<config.center.appName>feed_dev_online</config.center.appName>
+				<config.center.baseFolder>/home/y/var/tomcat/webapps/</config.center.baseFolder>
+				<config.center.remoteServer>https://cnode-ch.yongche.com/rpc/download</config.center.remoteServer>
+				<config.center.token>byz9yy32</config.center.token>
+				<config.center.connectTimeout>6000</config.center.connectTimeout>
+				<config.center.readTimeout>6000</config.center.readTimeout>
+				<config.center.remoteCheckInterval>6</config.center.remoteCheckInterval>
+			</properties>
+		</profile>
+
+
+
+	</profiles>
+
+	<properties>
+		<encoding>UTF-8</encoding>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<jdk.version>1.7</jdk.version>
+		<com.le.boss.config-client.version>1.2</com.le.boss.config-client.version>
+
+		<spring.version>4.1.6.RELEASE</spring.version>
+		<spring-security.version>4.1.0.RELEASE</spring-security.version>
+		<mybatis.version>3.1.1</mybatis.version>
+		<mybatis.spring.version>1.1.1</mybatis.spring.version>
+		<mysql.version>5.1.13</mysql.version>
+		<velocity.version>1.7</velocity.version>
+		<velocity.tools.version>2.0</velocity.tools.version>
+
+		<junit.version>4.10</junit.version>
+		<servlet.version>2.5</servlet.version>
+		<cglib.vesion>2.2</cglib.vesion>
+		<ezmorph.version>1.0.6</ezmorph.version>
+		<jackson.version>2.4.0</jackson.version>
+
+		<commons.collections.version>3.2</commons.collections.version>
+		<commons.lang.version>2.6</commons.lang.version>
+		<commons.logging.version>1.1.3</commons.logging.version>
+		<commons.dbcp.version>1.3</commons.dbcp.version>
+		<commons.beanutils.version>1.8.3</commons.beanutils.version>
+		<commons.codec.version>1.10</commons.codec.version>
+		<commons.digester.version>2.0</commons.digester.version>
+		<commons.httpclient.version>3.1</commons.httpclient.version>
+
+		<aspectj.version>1.6.11</aspectj.version>
+		<csv.version>2.3</csv.version>
+		<poi.version>2.3</poi.version>
+
+		<log4j.version>1.2.17</log4j.version>
+		<slf4j.version>1.6.1</slf4j.version>
+
+		<current.version>1.0.0-SNAPSHOT</current.version>
+		<gson.version>2.5</gson.version>
+		<quartz.version>2.2.1</quartz.version>
+
+		<apache.poi.version>3.9</apache.poi.version>
+		<apache.poi-ooxml.version>3.9</apache.poi-ooxml.version>
+
+		<thrift.version>0.9.3</thrift.version>
+
+		<spring.rabbit.version>1.5.1.RELEASE</spring.rabbit.version>
+
+	</properties>
+
+	<dependencyManagement>
+		<dependencies>
+			<!--项目内部依赖 START -->
+			<dependency>
+				<groupId>com.yongche</groupId>
+				<artifactId>feed-common</artifactId>
+				<version>${current.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.yongche</groupId>
+				<artifactId>feed-dao</artifactId>
+				<version>${current.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.yongche</groupId>
+				<artifactId>feed-domain</artifactId>
+				<version>${current.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.yongche</groupId>
+				<artifactId>feed-service</artifactId>
+				<version>${current.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.yongche</groupId>
+				<artifactId>feed-api</artifactId>
+				<version>${current.version}</version>
+			</dependency>
+			<!--内外部依赖 END -->
+
+			<!--公司内部依赖 START-->
+			<dependency>
+				<groupId>config-commons</groupId>
+				<artifactId>config-commons</artifactId>
+				<version>${com.le.boss.config-client.version}</version>
+				<exclusions>
+					<exclusion>
+						<groupId>ch.qos.logback</groupId>
+						<artifactId>logback-classic</artifactId>
+					</exclusion>
+					<exclusion>
+						<groupId>ch.qos.logback</groupId>
+						<artifactId>logback-core</artifactId>
+					</exclusion>
+				</exclusions>
+			</dependency>
+			<dependency>
+				<groupId>org.jfaster</groupId>
+				<artifactId>mango</artifactId>
+				<version>1.4.1</version>
+			</dependency>
+			<dependency>
+				<groupId>com.yongche</groupId>
+				<artifactId>consumer</artifactId>
+				<version>1.0-SNAPSHOT</version>
+			</dependency>
+			<dependency>
+				<groupId>com.le.boss</groupId>
+				<artifactId>config-client-plugin</artifactId>
+				<version>0.1.1</version>
+			</dependency>
+
+			<!--公司内部依赖 END -->
+
+			<!--外部依赖 START-->
+			<!-- junit -->
+			<dependency>
+				<groupId>junit</groupId>
+				<artifactId>junit</artifactId>
+				<version>${junit.version}</version>
+				<scope>test</scope>
+			</dependency>
+
+			<!-- servlet -->
+			<dependency>
+				<groupId>javax.servlet</groupId>
+				<artifactId>servlet-api</artifactId>
+				<version>${servlet.version}</version>
+				<scope>provided</scope>
+			</dependency>
+
+			<!-- spring -->
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-beans</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-core</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-aop</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-context</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-test</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-jdbc</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-tx</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-webmvc</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-web</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-orm</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.springframework.security</groupId>
+				<artifactId>spring-security-core</artifactId>
+				<version>${spring-security.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework.security</groupId>
+				<artifactId>spring-security-web</artifactId>
+				<version>${spring-security.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework.security</groupId>
+				<artifactId>spring-security-config</artifactId>
+				<version>${spring-security.version}</version>
+			</dependency>
+
+			<!-- commons -->
+			<dependency>
+				<groupId>commons-collections</groupId>
+				<artifactId>commons-collections</artifactId>
+				<version>${commons.collections.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>commons-lang</groupId>
+				<artifactId>commons-lang</artifactId>
+				<version>${commons.lang.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>commons-logging</groupId>
+				<artifactId>commons-logging</artifactId>
+				<version>${commons.logging.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>commons-dbcp</groupId>
+				<artifactId>commons-dbcp</artifactId>
+				<version>${commons.dbcp.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>commons-beanutils</groupId>
+				<artifactId>commons-beanutils</artifactId>
+				<version>${commons.beanutils.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>commons-codec</groupId>
+				<artifactId>commons-codec</artifactId>
+				<version>${commons.codec.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>commons-digester</groupId>
+				<artifactId>commons-digester</artifactId>
+				<version>${commons.digester.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>commons-httpclient</groupId>
+				<artifactId>commons-httpclient</artifactId>
+				<version>${commons.httpclient.version}</version>
+			</dependency>
+
+			<!-- cglib -->
+			<dependency>
+				<groupId>cglib</groupId>
+				<artifactId>cglib</artifactId>
+				<version>${cglib.vesion}</version>
+			</dependency>
+
+			<!-- aspectj -->
+			<dependency>
+				<groupId>org.aspectj</groupId>
+				<artifactId>aspectjrt</artifactId>
+				<version>${aspectj.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.aspectj</groupId>
+				<artifactId>aspectjweaver</artifactId>
+				<version>${aspectj.version}</version>
+			</dependency>
+
+			<!-- log4j -->
+			<dependency>
+				<groupId>log4j</groupId>
+				<artifactId>log4j</artifactId>
+				<version>${log4j.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>slf4j-api</artifactId>
+				<version>${slf4j.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>slf4j-log4j12</artifactId>
+				<version>${slf4j.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>com.alibaba</groupId>
+				<artifactId>fastjson</artifactId>
+				<version>1.2.5</version>
+			</dependency>
+
+			<!-- mybatis -->
+			<dependency>
+				<groupId>org.mybatis</groupId>
+				<artifactId>mybatis</artifactId>
+				<version>${mybatis.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.mybatis</groupId>
+				<artifactId>mybatis-spring</artifactId>
+				<version>${mybatis.spring.version}</version>
+			</dependency>
+
+			<!-- mysql -->
+			<dependency>
+				<groupId>mysql</groupId>
+				<artifactId>mysql-connector-java</artifactId>
+				<version>${mysql.version}</version>
+			</dependency>
+
+			<!-- json-->
+			<dependency>
+				<groupId>com.google.code.gson</groupId>
+				<artifactId>gson</artifactId>
+				<version>${gson.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.apache.commons</groupId>
+				<artifactId>commons-lang3</artifactId>
+				<version>3.1</version>
+			</dependency>
+
+			<!-- rabbit -->
+			<dependency>
+				<groupId>org.springframework.amqp</groupId>
+				<artifactId>spring-rabbit</artifactId>
+				<version>${spring.rabbit.version}</version>
+			</dependency>
+
+			<!-- redis -->
+			<dependency>
+				<groupId>org.apache.commons</groupId>
+				<artifactId>commons-pool2</artifactId>
+				<version>2.4.2</version>
+			</dependency>
+			<!--2.9.0支持密码-->
+			<dependency>
+				<groupId>redis.clients</groupId>
+				<artifactId>jedis</artifactId>
+				<version>2.9.0</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.quartz-scheduler</groupId>
+				<artifactId>quartz</artifactId>
+				<version>${quartz.version}</version>
+			</dependency>
+
+			<!-- perf4j -->
+			<dependency>
+				<groupId>org.perf4j</groupId>
+				<artifactId>perf4j</artifactId>
+				<version>0.9.16</version>
+			</dependency>
+
+			<!-- elastic-job  begin -->
+			<dependency>
+				<groupId>com.dangdang</groupId>
+				<artifactId>elastic-job-lite-core</artifactId>
+				<version>2.0.5</version>
+			</dependency>
+
+			<!-- 使用springframework自定义命名空间时引入 -->
+			<dependency>
+				<groupId>com.dangdang</groupId>
+				<artifactId>elastic-job-lite-spring</artifactId>
+				<version>2.0.5</version>
+			</dependency>
+			<!-- elastic-job  end -->
+
+		</dependencies>
+	</dependencyManagement>
+
+	<build>
+		<finalName>${project.artifactId}</finalName>
+
+		<plugins>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.1</version>
+				<configuration>
+					<source>${jdk.version}</source>
+					<target>${jdk.version}</target>
+					<encoding>${encoding}</encoding>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>2.1.1</version>
+				<configuration>
+					<packagingExcludes>WEB-INF/web.xml</packagingExcludes>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<artifactId>maven-resources-plugin</artifactId>
+				<version>2.6</version>
+				<configuration>
+					<encoding>${encoding}</encoding>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>2.6</version>
+				<configuration>
+					<skip>true</skip>
+				</configuration>
+			</plugin>
+
+
+
+		</plugins>
+
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>true</filtering>
+			</resource>
+		</resources>
+	</build>
+
+	<modules>
+		<module>feed-web</module>
+		<module>feed-dao</module>
+		<module>feed-domain</module>
+		<module>feed-service</module>
+		<module>feed-common</module>
+		<module>feed-api</module>
+	</modules>
+
+    <repositories>
+        <repository>
+            <id>im20.releases.http</id>
+            <name>Nexus Release Repository</name>
+            <url>http://10.0.11.69:8082/repository/maven-releases/</url>
+        </repository>
+        <repository>
+            <id>im20.snapshots.http</id>
+            <name>im20 Snapshots Repository</name>
+            <url>http://10.0.11.69:8082/repository/maven-snapshots/</url>
+        </repository>
+    </repositories>
+    <distributionManagement>
+        <repository>
+            <id>im20.releases.http</id>
+            <name>Nexus Release Repository</name>
+            <url>http://10.0.11.69:8082/repository/maven-releases/</url>
+        </repository>
+        <snapshotRepository>
+            <id>im20.snapshots.http</id>
+            <name>Nexus Snapshots Repository</name>
+            <url>http://10.0.11.69:8082/repository/maven-snapshots/</url>
+        </snapshotRepository>
+    </distributionManagement>
+
+</project>

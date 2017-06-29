@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<properties>
+    <property key="rabbit.registry.address">172.17.2.20:5672,172.17.2.26:5672</property>
+    <property key="rabbit.registry.vhost">/feed</property>
+    <property key="rabbit.registry.username">yc_feed</property>
+    <property key="rabbit.registry.password">X2wo0abG</property>
+    <property key="rabbit.comment.exchange.name">feed.exchange.comment</property>
+    <property key="rabbit.comment.queue.name">feed.queue.comment</property>
+    <property key="rabbit.comment.routing.key">feed.key.comment</property>
+    <property key="rabbit.activity.exchange.name">feed.exchange.activity</property>
+    <property key="rabbit.activity.queue.name">feed.queue.activity</property>
+    <property key="rabbit.activity.routing.key">feed.key.activity</property>
+            <!-- 司机端MQ配置 checked-->
+    <property key="rabbit.registry.driver.address">172.17.0.13:5672,172.17.0.11:5672</property>
+    <property key="rabbit.registry.driver.vhost">/driver</property>
+    <property key="rabbit.registry.driver.username">yongche</property>
+    <property key="rabbit.registry.driver.password">fhu7qjhgfy3</property>
+
+    <property key="rabbit.driver.exchange.name">driver_level_evaluation</property>
+    <property key="rabbit.driver.queue.name">driver_level_evaluation_q</property>
+    <property key="rabbit.driver.routing.key">driver_level_evaluation_q</property>
+            <!-- 司机最近50单好评率配置-->
+    <property key="rabbit.driver.rate.exchange.name">feed.exchange.driver.evaluation</property>
+    <property key="rabbit.driver.rate.queue.name">feed.queue.driver.evaluation</property>
+    <property key="rabbit.driver.rate.routing.key">feed.key.driver.evaluation</property>
+
+            <!-- 订单系统MQ配置 checked-->
+    <property key="rabbit.registry.order.address">172.17.0.11:5672,172.17.0.13:5672</property>
+
+    <property key="rabbit.registry.order.vhost">/order</property>
+    <property key="rabbit.registry.order.username">yongche</property>
+    <property key="rabbit.registry.order.password">fhu7qjhgfy3</property>
+</properties>

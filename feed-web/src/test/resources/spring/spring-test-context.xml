@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+    <bean id="properties" class="com.yc.feed.test.PropertyFactoryBean"/>
+    <bean id="configurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer" >
+        <property name="properties" ref="properties" />
+        <property name="fileEncoding" value="UTF-8" />
+    </bean>
+    <import resource="spring-test-inport.xml"/>
+</beans>

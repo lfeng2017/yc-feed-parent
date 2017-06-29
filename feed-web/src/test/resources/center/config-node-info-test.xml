@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ConfigNodeInfo appName="feed_dev" baseFolder="/feed/tomcat8.0/webapps" mode="0">
+    <remoteServer url="http://10.0.13.11:9000/rpc/download" token="niybpjod" connectTimeout="6000" readTimeout="6000"/>
+    <settings>
+        <setting key="remoteCheckInterval">6</setting>
+    </settings>
+</ConfigNodeInfo>

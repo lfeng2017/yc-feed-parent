@@ -1,0 +1,88 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+
+    <appender name="stdout" class="org.apache.log4j.ConsoleAppender">
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="[易到评价系统 %d{yyyy-MM-dd HH:mm:ss}]: [%p] - %m%n"/>
+        </layout>
+    </appender>
+
+    <appender name="R" class="org.apache.log4j.DailyRollingFileAppender">
+        <param name="File" value="/feed/logs/feed-parent/yc_feed.log"/>
+        <param name="encoding" value="UTF-8" />
+        <param name="DatePattern" value="'.'yyyy-MM-dd"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="[易到评价系统 %d{yyyy-MM-dd HH:mm:ss}]: [%p] - %m%n"/>
+        </layout>
+    </appender>
+
+    <appender name="jdbcOperation" class="org.apache.log4j.DailyRollingFileAppender">
+        <param name="File" value="/feed/logs/feed-parent/jdbc_yc_feed.log"/>
+        <param name="encoding" value="UTF-8" />
+        <param name="DatePattern" value="'.'yyyy-MM-dd"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d{HH:mm:ss} [%thread] [%logger{5}#%M] - %msg%n"/>
+        </layout>
+    </appender>
+
+    <appender name="errorFile" class="org.apache.log4j.DailyRollingFileAppender">
+        <param name="File" value="/feed/logs/feed-parent/yc_feed_error.log"/>
+        <param name="encoding" value="UTF-8" />
+        <param name="DatePattern" value="'.'yyyy-MM-dd"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="[易到评价系统 %d{yyyy-MM-dd HH:mm:ss}]: [%p] - %m%n"/>
+        </layout>
+        <filter class="org.apache.log4j.varia.LevelRangeFilter">
+            <param name="levelMin" value="error" />
+            <param name="levelMax" value="error" />
+            <param name="AcceptOnMatch" value="true" />
+        </filter>
+    </appender>
+
+    <appender name="Async" class="org.apache.log4j.AsyncAppender">
+        <param name="BufferSize" value="2048"/>
+        <appender-ref ref="R"/>
+    </appender>
+
+    <!-- perf4J begin -->
+    <appender name="perf4jFile" class="org.apache.log4j.DailyRollingFileAppender">
+        <param name="File" value="/feed/logs/feed-parent/operation_perf4j.log"/>
+        <param name="Append" value="true"/>
+        <param name="encoding" value="UTF-8" />
+        <param name="DatePattern" value="'.'yyyy-MM-dd"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%m%n"/>
+        </layout>
+    </appender>
+
+    <appender name="CoalescingStatistics"
+              class="org.perf4j.log4j.AsyncCoalescingStatisticsAppender">
+        <param name="TimeSlice" value="10000"/>
+        <appender-ref ref="perf4jFile"/>
+    </appender>
+    <!-- perf4J end -->
+
+    <logger name="org.mybatis" additivity="false">
+        <level value="info" />
+    </logger>
+
+    <logger name="com.zaxxer.hikari" >
+        <level value="error" />
+    </logger>
+
+    <logger name="org.perf4j.TimingLogger" additivity="false">
+        <level value="debug" />
+        <appender-ref ref="CoalescingStatistics"/>
+    </logger>
+
+    <root>
+        <priority value="info"/>
+        <appender-ref ref="stdout"/>
+        <appender-ref ref="R"/>
+        <appender-ref ref="errorFile" />
+    </root>
+
+
+</log4j:configuration>

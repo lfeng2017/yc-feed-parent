@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns:context="http://www.springframework.org/schema/context"
+	   xmlns:rabbit="http://www.springframework.org/schema/rabbit"
+	   xsi:schemaLocation="
+            http://www.springframework.org/schema/beans
+                http://www.springframework.org/schema/beans/spring-beans.xsd
+            http://www.springframework.org/schema/context
+                http://www.springframework.org/schema/context/spring-context.xsd
+            http://www.springframework.org/schema/rabbit
+                http://www.springframework.org/schema/rabbit/spring-rabbit-1.5.xsd">
+
+
+	<!-- 连接服务配置  -->
+	<rabbit:connection-factory id="connectionFactory" addresses="${rabbit.registry.address}" username="${rabbit.registry.username}" virtual-host="${rabbit.registry.vhost}"
+							   password="${rabbit.registry.password}" />
+
+	<rabbit:admin connection-factory="connectionFactory"/>
+
+	<!--数据格式转化器-->
+	<bean id="jsonMessageConverter"  class="org.springframework.amqp.support.converter.Jackson2JsonMessageConverter"></bean>
+	<bean id="simpleMessageConverter"  class="org.springframework.amqp.support.converter.SimpleMessageConverter"></bean>
+
+	<!--commentMQ配置-->
+	<rabbit:queue id="queue_comment" durable="true" auto-delete="false" exclusive="false" name="${feed.queue.comment}"/>
+
+	<rabbit:direct-exchange name="${feed.exchange.comment}" durable="true" auto-delete="false" id="comment-mq-exchange">
+	<rabbit:bindings>
+		<rabbit:binding queue="queue_comment" key="${feed.key.comment}"/>
+	</rabbit:bindings>
+	</rabbit:direct-exchange>
+
+	<rabbit:template id="amqpTemplateComment" exchange="${feed.exchange.comment}" routing-key="${feed.key.comment}"  connection-factory="connectionFactory"  message-converter="jsonMessageConverter" reply-timeout="5" />
+
+	<!--driver最近50单好评率 MQ配置-->
+	<rabbit:queue id="queue_driver_rate" durable="true" auto-delete="false" exclusive="false" name="${feed.queue.driver.evaluation}"/>
+
+	<rabbit:direct-exchange name="${feed.exchange.driver.evaluation}" durable="true" auto-delete="false" id="feed.queue.driver.evaluation">
+		<rabbit:bindings>
+			<rabbit:binding queue="queue_driver_rate" key="${feed.key.driver.evaluation}"/>
+		</rabbit:bindings>
+	</rabbit:direct-exchange>
+
+	<rabbit:template id="driverRateTemplate" exchange="${feed.exchange.driver.evaluation}"
+					 routing-key="${feed.key.driver.evaluation}"
+					 connection-factory="connectionFactory"
+					 message-converter="jsonMessageConverter"
+					 reply-timeout="5" />
+
+
+	<!-- 活动消息提供者配置-->
+	<rabbit:queue id="queue_activity" durable="true" auto-delete="false" exclusive="false" name="${feed.queue.activity}"/>
+
+	<rabbit:direct-exchange name="${feed.exchange.activity}" durable="true" auto-delete="false" id="activity-mq-exchange">
+		<rabbit:bindings>
+			<rabbit:binding queue="queue_activity" key="${feed.key.activity}"/>
+		</rabbit:bindings>
+	</rabbit:direct-exchange>
+
+	<rabbit:template id="amqpTemplateActivity" exchange="${feed.exchange.activity}" routing-key="${feed.key.activity}"  connection-factory="connectionFactory"  message-converter="jsonMessageConverter" reply-timeout="5" />
+
+
+	<!--司机MQ-->
+	<!-- 司机连接服务配置  -->
+	<rabbit:connection-factory id="driverConnectionFactory"
+							   addresses="${rabbit.registry.driver.address}"
+							   username="${rabbit.registry.driver.username}"
+							   virtual-host="/driver"
+							   password="${rabbit.registry.driver.password}" />
+	<rabbit:admin connection-factory="driverConnectionFactory"/>
+	<!-- 司机MQ消息提供者配置-->
+	<rabbit:queue id="queue_driver" durable="true" auto-delete="false" exclusive="false" name="${driver_level_evaluation_q}"/>
+
+	<rabbit:direct-exchange name="driver_level_evaluation" durable="true" auto-delete="false" id="driver-mq-exchange">
+		<rabbit:bindings>
+			<rabbit:binding queue="queue_activity" key="${driver_level_evaluation_q}"/>
+		</rabbit:bindings>
+	</rabbit:direct-exchange>
+
+
+
+	<rabbit:template id="amqpTemplateDriver" exchange="driver_level_evaluation" routing-key="${driver_level_evaluation_q}"
+					 connection-factory="driverConnectionFactory"
+					 message-converter="simpleMessageConverter"
+					 reply-timeout="5" />
+
+</beans>

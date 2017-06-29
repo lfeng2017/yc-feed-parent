@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:rabbit="http://www.springframework.org/schema/rabbit"
+       xsi:schemaLocation="
+            http://www.springframework.org/schema/beans
+                http://www.springframework.org/schema/beans/spring-beans.xsd
+            http://www.springframework.org/schema/context
+                http://www.springframework.org/schema/context/spring-context.xsd
+            http://www.springframework.org/schema/rabbit
+                http://www.springframework.org/schema/rabbit/spring-rabbit-1.0.xsd">
+
+    <bean id="genericObjectPoolConfig" class="org.apache.commons.pool2.impl.GenericObjectPoolConfig" />
+
+    <bean id="jedisCluster" class="redis.clients.jedis.JedisCluster"  lazy-init="true">
+        <constructor-arg index="0">
+            <set>
+                <bean class="redis.clients.jedis.HostAndPort">
+                    <constructor-arg index="0" value="#{redisConfigBean.redisConfig.master1}"/>
+                    <constructor-arg index="1" value="#{redisConfigBean.redisConfig.port1}"/>
+                </bean>
+                <bean class="redis.clients.jedis.HostAndPort">
+                    <constructor-arg index="0" value="#{redisConfigBean.redisConfig.master2}"/>
+                    <constructor-arg index="1" value="#{redisConfigBean.redisConfig.port2}"/>
+                </bean>
+                <bean class="redis.clients.jedis.HostAndPort">
+                    <constructor-arg index="0" value="#{redisConfigBean.redisConfig.master3}"/>
+                    <constructor-arg index="1" value="#{redisConfigBean.redisConfig.port3}"/>
+                </bean>
+            </set>
+        </constructor-arg>
+        <constructor-arg index="1" value="30000"/>
+        <constructor-arg index="2" value="30000"/>
+        <constructor-arg index="3" value="6"/>
+        <constructor-arg index="4" value="#{redisConfigBean.redisConfig.passord}"/>
+        <constructor-arg index="5" ref="genericObjectPoolConfig"/>
+    </bean>
+
+    <!-- 配置中心redis配置-->
+    <bean id="redisConfigBean" class="com.yc.feed.bean.RedisConfigBean" init-method="initFromCenter" lazy-init="true">
+    </bean>
+
+
+</beans>

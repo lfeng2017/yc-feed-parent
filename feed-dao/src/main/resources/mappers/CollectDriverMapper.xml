@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yc.feed.dao.mapper.CollectDriverMapper" >
+  <resultMap id="BaseResultMap" type="com.yc.feed.domain.entity.CollectDriver" >
+    <id column="collect_driver_id" property="collectDriverId" jdbcType="BIGINT" />
+    <result column="user_id" property="userId" jdbcType="BIGINT" />
+    <result column="driver_id" property="driverId" jdbcType="BIGINT" />
+    <result column="create_time" property="createTime" jdbcType="BIGINT" />
+    <result column="update_time" property="updateTime" jdbcType="BIGINT" />
+    <result column="service_times" property="serviceTimes" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="BIT" />
+    <result column="driver_note" property="driverNote" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.yc.feed.domain.entity.CollectDriver" extends="BaseResultMap" >
+    <result column="driver_city" property="driverCity" jdbcType="VARBINARY" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    collect_driver_id, user_id, driver_id, create_time, update_time, service_times, status, 
+    driver_note
+  </sql>
+  <sql id="Blob_Column_List" >
+    driver_city
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from collect_driver
+    where collect_driver_id = #{collectDriverId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from collect_driver
+    where collect_driver_id = #{collectDriverId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.yc.feed.domain.entity.CollectDriver" >
+    insert into collect_driver (collect_driver_id, user_id, driver_id, 
+      create_time, update_time, service_times, 
+      status, driver_note,
+      driver_city)
+    values (#{collectDriverId,jdbcType=BIGINT}, #{userId,jdbcType=BIGINT}, #{driverId,jdbcType=BIGINT}, 
+      #{createTime,jdbcType=BIGINT}, #{updateTime,jdbcType=BIGINT}, #{serviceTimes,jdbcType=INTEGER}, 
+      #{status,jdbcType=BIT}, #{driverNote,jdbcType=VARCHAR},
+      #{driverCity,jdbcType=VARBINARY})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yc.feed.domain.entity.CollectDriver" >
+    insert into collect_driver
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="collectDriverId != null" >
+        collect_driver_id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="driverId != null" >
+        driver_id,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="serviceTimes != null" >
+        service_times,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="driverNote != null" >
+        driver_note,
+      </if>
+      <if test="driverCity != null" >
+        driver_city,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="collectDriverId != null" >
+        #{collectDriverId,jdbcType=BIGINT},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="driverId != null" >
+        #{driverId,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=BIGINT},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=BIGINT},
+      </if>
+      <if test="serviceTimes != null" >
+        #{serviceTimes,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=BIT},
+      </if>
+      <if test="driverNote != null" >
+        #{driverNote,jdbcType=VARCHAR},
+      </if>
+      <if test="driverCity != null" >
+        #{driverCity,jdbcType=VARBINARY},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yc.feed.domain.entity.CollectDriver" >
+    update collect_driver
+    <set >
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="driverId != null" >
+        driver_id = #{driverId,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=BIGINT},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=BIGINT},
+      </if>
+      <if test="serviceTimes != null" >
+        service_times = #{serviceTimes,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=BIT},
+      </if>
+      <if test="driverNote != null" >
+        driver_note = #{driverNote,jdbcType=VARCHAR},
+      </if>
+      <if test="driverCity != null" >
+        driver_city = #{driverCity,jdbcType=VARBINARY},
+      </if>
+    </set>
+    where collect_driver_id = #{collectDriverId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.yc.feed.domain.entity.CollectDriver" >
+    update collect_driver
+    set user_id = #{userId,jdbcType=BIGINT},
+      driver_id = #{driverId,jdbcType=BIGINT},
+      create_time = #{createTime,jdbcType=BIGINT},
+      update_time = #{updateTime,jdbcType=BIGINT},
+      service_times = #{serviceTimes,jdbcType=INTEGER},
+      status = #{status,jdbcType=BIT},
+      driver_note = #{driverNote,jdbcType=VARCHAR},
+      driver_city = #{driverCity,jdbcType=VARBINARY}
+    where collect_driver_id = #{collectDriverId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yc.feed.domain.entity.CollectDriver" >
+    update collect_driver
+    set user_id = #{userId,jdbcType=BIGINT},
+      driver_id = #{driverId,jdbcType=BIGINT},
+      create_time = #{createTime,jdbcType=BIGINT},
+      update_time = #{updateTime,jdbcType=BIGINT},
+      service_times = #{serviceTimes,jdbcType=INTEGER},
+      status = #{status,jdbcType=BIT},
+      driver_note = #{driverNote,jdbcType=VARCHAR}
+    where collect_driver_id = #{collectDriverId,jdbcType=BIGINT}
+  </update>
+
+
+  <select id="getCount" resultType="int" parameterType="com.yc.feed.api.http.req.GetCollectInfoReq" >
+    select COUNT(user_id)
+    from collect_driver
+    where status=1
+    <if test="userId != null" >
+      AND user_id = #{userId,jdbcType=BIGINT}
+    </if>
+    <if test="driverId != null" >
+      AND driver_id = #{driverId,jdbcType=BIGINT}
+    </if>
+    <if test="startTimeStamp > 0" >
+      AND create_time &gt;=  #{startTimeStamp,jdbcType=INTEGER}
+    </if>
+    <if test="endTimeStamp > 0" >
+      AND create_time &lt;=  #{endTimeStamp,jdbcType=INTEGER}
+    </if>
+  </select>
+
+  <select id="list" resultMap="ResultMapWithBLOBs" parameterType="com.yc.feed.api.http.req.GetCollectInfoReq" >
+    select
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from collect_driver
+    where status=1
+    <if test="userId != null" >
+      AND user_id = #{userId,jdbcType=BIGINT}
+    </if>
+    <if test="driverId != null" >
+      AND driver_id = #{driverId,jdbcType=BIGINT}
+    </if>
+    <if test="startTimeStamp > 0" >
+      AND create_time &gt;=  #{startTimeStamp,jdbcType=INTEGER}
+    </if>
+    <if test="endTimeStamp > 0" >
+      AND create_time &lt;=  #{endTimeStamp,jdbcType=INTEGER}
+    </if>
+    ORDER BY update_time desc
+    <if test="pageSql != null" >
+      ${pageSql}
+    </if>
+  </select>
+
+  <select id="selectAllList" resultMap="ResultMapWithBLOBs" parameterType="com.yc.feed.api.http.req.GetCollectInfoReq" >
+    select
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from collect_driver
+    where 1=1
+    <if test="userId != null" >
+      AND user_id = #{userId,jdbcType=BIGINT}
+    </if>
+    <if test="driverId != null" >
+      AND driver_id = #{driverId,jdbcType=BIGINT}
+    </if>
+    <if test="startTimeStamp > 0" >
+      AND create_time &gt;=  #{startTimeStamp,jdbcType=INTEGER}
+    </if>
+    <if test="endTimeStamp > 0" >
+      AND create_time &lt;=  #{endTimeStamp,jdbcType=INTEGER}
+    </if>
+    ORDER BY update_time desc
+  </select>
+
+
+  <update id="updateNote" parameterType="com.yc.feed.domain.entity.CollectDriver" >
+    update collect_driver
+    set
+    update_time = #{updateTime,jdbcType=BIGINT},
+    driver_note = #{driverNote,jdbcType=VARCHAR}
+    where
+    status=1
+    AND
+    user_id = #{userId,jdbcType=BIGINT}
+    AND
+    driver_id = #{driverId,jdbcType=BIGINT}
+  </update>
+
+  <update id="updateServiceTimes" parameterType="com.yc.feed.domain.entity.CollectDriver" >
+    update collect_driver
+    set
+    update_time = #{updateTime,jdbcType=BIGINT},
+    service_times = #{serviceTimes,jdbcType=VARCHAR}
+    where
+    status=1
+    AND
+    user_id = #{userId,jdbcType=BIGINT}
+    AND
+    driver_id = #{driverId,jdbcType=BIGINT}
+  </update>
+</mapper>
